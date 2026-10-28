@@ -1,0 +1,554 @@
+/* ========================================
+   CREAR ADMINISTRADOR Y DOCTOR
+   MEDITrack EPS
+======================================== */
+
+.admin-page {
+    --page-bg: #F3F6F8;
+    --card-bg: #FFFFFF;
+    --text-color: #1F2937;
+    --heading-color: #134E4A;
+    --muted-text: #6B7280;
+    --border-color: #E5E7EB;
+    --input-bg: #FFFFFF;
+    --hover-bg: #F3F6F8;
+    --primary-color: #0F766E;
+    --primary-hover: #134E4A;
+
+    min-height: calc(100vh - 70px);
+    box-sizing: border-box;
+    padding: 100px 32px 32px;
+    margin-left: 250px;
+    background: var(--page-bg);
+    color: var(--text-color);
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        margin-left 0.2s ease;
+}
+
+.admin-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.admin-heading {
+    margin-bottom: 28px;
+}
+
+.admin-heading h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--heading-color);
+}
+
+.admin-heading p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted-text);
+}
+
+/* ========================================
+   TARJETA DEL FORMULARIO
+======================================== */
+
+.admin-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(19, 78, 74, 0.06);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-card h2 {
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--heading-color);
+    font-size: 20px;
+    font-weight: 650;
+}
+
+/* ========================================
+   DISTRIBUCIÓN GENERAL DE LOS CAMPOS
+======================================== */
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+
+.admin-field-full {
+    grid-column: 1 / -1;
+}
+
+.admin-field label {
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+    outline: none;
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.admin-field input,
+.admin-field select {
+    min-height: 45px;
+}
+
+.admin-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-field input::placeholder,
+.admin-field textarea::placeholder {
+    color: var(--muted-text);
+    opacity: 1;
+}
+
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.13);
+}
+
+.admin-field input:disabled,
+.admin-field select:disabled,
+.admin-field textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.admin-field small {
+    color: var(--muted-text);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ========================================
+   MENSAJES DE ÉXITO Y ERROR
+======================================== */
+
+.admin-alert {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.admin-alert ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+}
+
+.admin-alert li + li {
+    margin-top: 4px;
+}
+
+.admin-alert-success {
+    color: #166534;
+    background: #F0FDF4;
+    border-color: #BBF7D0;
+}
+
+.admin-alert-error {
+    color: #991B1B;
+    background: #FEF2F2;
+    border-color: #FECACA;
+}
+
+/* Compatibilidad con los mensajes de Laravel */
+
+.alerta-error {
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border: 1px solid #FECACA;
+    border-radius: 10px;
+    background: #FEF2F2;
+    color: #991B1B;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ========================================
+   BOTONES Y ACCIONES
+======================================== */
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-color);
+}
+
+.admin-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-button:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.35);
+    outline-offset: 3px;
+}
+
+.admin-button-primary {
+    background: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.admin-button-primary:hover {
+    background: var(--primary-hover);
+}
+
+.admin-button-secondary {
+    border-color: var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.admin-button-secondary:hover {
+    background: var(--hover-bg);
+}
+
+.admin-button:active {
+    transform: translateY(1px);
+}
+
+/* ========================================
+   DISTRIBUCIÓN ESPECIAL DEL FORMULARIO
+======================================== */
+
+/* Dirección a la izquierda y espacio vacío a la derecha */
+
+.admin-field.full-width {
+    grid-column: auto;
+}
+
+/* Contraseña y confirmación */
+
+.admin-password-field {
+    grid-column: span 1;
+}
+
+/* Distribución exclusiva de creación */
+
+.admin-create-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Dirección en la columna izquierda, fila 4 */
+
+.admin-create-grid .direccion-field {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+/* Contraseña en la columna izquierda, fila 5 */
+
+.admin-create-grid .password-field {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+/* Confirmación de contraseña a la derecha */
+
+.admin-create-grid .password-confirmation-field {
+    grid-column: 2;
+    grid-row: 5;
+}
+
+/* ========================================
+   SELECTOR ADMINISTRADOR / DOCTOR
+======================================== */
+
+.admin-role-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 26px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--hover-bg);
+}
+
+.admin-role-option {
+    flex: 1;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-role-option:hover {
+    color: var(--heading-color);
+}
+
+.admin-role-option.active {
+    border-color: var(--border-color);
+    background: var(--card-bg);
+    color: var(--heading-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.admin-role-option:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.3);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   MODO OSCURO
+   Se conservan los tonos oscuros existentes
+======================================== */
+
+html.dark-mode .admin-page {
+    --page-bg: #111827;
+    --card-bg: #1F2937;
+    --text-color: #E5E7EB;
+    --heading-color: #E5E7EB;
+    --muted-text: #9CA3AF;
+    --border-color: #374151;
+    --input-bg: #111827;
+    --hover-bg: #374151;
+    --primary-color: #3B82F6;
+    --primary-hover: #2563EB;
+}
+
+html.dark-mode .admin-card {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+html.dark-mode .admin-field label {
+    color: #E5E7EB;
+}
+
+html.dark-mode .admin-alert-success {
+    color: #BBF7D0;
+    background: #052E16;
+    border-color: #166534;
+}
+
+html.dark-mode .admin-alert-error,
+html.dark-mode .alerta-error {
+    color: #FECACA;
+    background: #450A0A;
+    border-color: #991B1B;
+}
+
+html.dark-mode .admin-button-primary {
+    background: #3B82F6;
+    color: #FFFFFF;
+}
+
+html.dark-mode .admin-button-primary:hover {
+    background: #2563EB;
+}
+
+html.dark-mode .admin-role-option:hover {
+    color: #E5E7EB;
+}
+
+html.dark-mode .admin-role-option.active {
+    border-color: #4B5563;
+    background: #1F2937;
+    color: #E5E7EB;
+}
+
+/* ========================================
+   RESPONSIVE: SELECTOR DE ROLES
+======================================== */
+
+@media (max-width: 420px) {
+    .admin-role-selector {
+        flex-direction: column;
+    }
+
+    .admin-role-option {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   RESPONSIVE: FORMULARIO
+======================================== */
+
+@media (max-width: 640px) {
+    .admin-create-grid .direccion-field,
+    .admin-create-grid .password-field,
+    .admin-create-grid .password-confirmation-field {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .admin-password-field {
+        grid-column: auto;
+    }
+}
+
+/* ========================================
+   TABLETAS
+======================================== */
+
+@media (max-width: 900px) {
+    .admin-page {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .admin-card {
+        padding: 24px;
+    }
+
+    .admin-heading h1 {
+        font-size: 27px;
+    }
+}
+
+/* ========================================
+   MÓVILES
+======================================== */
+
+@media (max-width: 640px) {
+    .admin-page {
+        margin-left: 0;
+        padding: 90px 14px 20px;
+    }
+
+    .admin-container {
+        max-width: 100%;
+    }
+
+    .admin-heading {
+        margin-bottom: 20px;
+    }
+
+    .admin-heading h1 {
+        font-size: 24px;
+    }
+
+    .admin-heading p {
+        font-size: 14px;
+    }
+
+    .admin-card {
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    .admin-card h2 {
+        font-size: 18px;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .admin-field-full {
+        grid-column: auto;
+    }
+
+    .admin-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .admin-button {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   PANTALLAS MUY PEQUEÑAS
+======================================== */
+
+@media (max-width: 360px) {
+    .admin-page {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .admin-card {
+        padding: 16px 12px;
+    }
+}

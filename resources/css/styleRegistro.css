@@ -1,0 +1,513 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #0f8b80;
+    --primary-dark: #08766e;
+    --primary-light: #e6f7f4;
+    --text: #243640;
+    --text-light: #71818a;
+    --background: #f2f8f8;
+    --white: #ffffff;
+    --border: #e1e9ec;
+    --danger: #b93838;
+    --success: #18794e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 35px 20px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 8% 8%, rgba(32, 164, 148, 0.11), transparent 28%),
+        radial-gradient(circle at 95% 90%, rgba(15, 139, 128, 0.10), transparent 28%),
+        var(--background);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.register-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 38px 44px;
+    border: 1px solid rgba(221, 234, 235, 0.95);
+    border-radius: 24px;
+    background: var(--white);
+    box-shadow: 0 15px 45px rgba(35, 70, 78, 0.075);
+}
+
+
+/* ENCABEZADO */
+
+.register-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 23px;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: var(--primary);
+}
+
+.brand-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+}
+
+.brand-name small {
+    color: var(--primary);
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.welcome-tag {
+    display: table;
+    margin: 0 auto 10px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.register-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.register-header > p {
+    margin-top: 7px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+
+/* ALERTAS */
+
+.alerta-error,
+.alerta-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 13px 15px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.alerta-error {
+    color: var(--danger);
+    border-color: #f3d5d5;
+    background: #fff5f5;
+}
+
+.alerta-success {
+    color: var(--success);
+    border-color: #ccebd9;
+    background: #f0fbf4;
+}
+
+.alert-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    color: white;
+    background: var(--danger);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.alerta-success .alert-icon {
+    background: var(--success);
+}
+
+.alerta-error ul {
+    margin-top: 5px;
+    padding-left: 18px;
+}
+
+.alerta-error li + li {
+    margin-top: 3px;
+}
+
+
+/* SECCIONES DEL FORMULARIO */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.section-number {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-section-title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.form-section-title p {
+    margin-top: 2px;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.account-title {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #edf1f2;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+}
+
+.form-group label {
+    color: #354851;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.optional {
+    color: #94a2a8;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+    padding: 0 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 11px;
+    outline: none;
+    color: var(--text);
+    background: #fbfcfd;
+    font-size: 13px;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #9ba9af;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #bdcfce;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(15, 139, 128, 0.1);
+}
+
+.form-group input:disabled {
+    border-color: #e9eeee;
+    color: #9aa7ab;
+    background: #f0f3f4;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.field-error {
+    color: var(--danger);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.field-hint {
+    color: var(--text-light);
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* CONTRASEÑA */
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 9px;
+    color: #84959c;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.toggle-password svg {
+    width: 19px;
+    height: 19px;
+}
+
+
+/* BOTÓN Y ENLACES */
+
+.register-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 49px;
+    margin-top: 27px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    color: var(--white);
+    background: var(--primary);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.register-button:hover {
+    transform: translateY(-1px);
+    background: var(--primary-dark);
+    box-shadow: 0 6px 14px rgba(15, 139, 128, 0.18);
+}
+
+.register-button:active {
+    transform: translateY(0);
+}
+
+.register-button svg {
+    width: 19px;
+    height: 19px;
+    transition: transform 0.2s;
+}
+
+.register-button:hover svg {
+    transform: translateX(3px);
+}
+
+.register-button:focus-visible {
+    outline: 3px solid rgba(15, 139, 128, 0.3);
+    outline-offset: 3px;
+}
+
+.login-link {
+    margin-top: 20px;
+    color: var(--text-light);
+    font-size: 12px;
+    text-align: center;
+}
+
+.login-link a {
+    margin-left: 4px;
+    color: var(--primary-dark);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 22px;
+    padding-top: 17px;
+    border-top: 1px solid #edf1f2;
+    color: #829198;
+    font-size: 11px;
+    text-align: center;
+}
+
+.security-note svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+}
+
+
+/* TABLET Y MÓVIL */
+
+@media (max-width: 700px) {
+    body {
+        padding: 22px 13px;
+    }
+
+    .register-card {
+        max-width: 520px;
+        padding: 29px 24px;
+        border-radius: 20px;
+    }
+
+    .register-header {
+        margin-bottom: 26px;
+    }
+
+    .register-header h1 {
+        font-size: 27px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .account-title {
+        margin-top: 25px;
+        padding-top: 22px;
+    }
+
+    .register-button {
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    .register-card {
+        padding: 23px 17px;
+        border-radius: 17px;
+    }
+
+    .register-header h1 {
+        font-size: 24px;
+    }
+
+    .brand-name {
+        font-size: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

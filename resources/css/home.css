@@ -1,0 +1,237 @@
+
+/* =========================================
+   ESTILOS PROPIOS DE INICIO
+========================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: #F3F6F8;
+    color: #1F2937;
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    min-height: 100vh;
+    padding: 100px 30px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    transition:
+        margin-left 0.25s ease,
+        width 0.25s ease;
+}
+
+/* Cuando el sidebar está contraído */
+.content.expanded {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
+
+/* =========================================
+   TÍTULO DE BIENVENIDA
+========================================= */
+
+.content h1 {
+    width: 100%;
+    margin: 0 0 12px;
+    color: #134E4A;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* =========================================
+   DESCRIPCIÓN DEL PANEL
+========================================= */
+
+.panel-descripcion {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto 30px;
+    color: #4B5563;
+    line-height: 1.7;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* =========================================
+   TÍTULO DE LA SECCIÓN
+========================================= */
+
+.panel-section-title {
+    width: 100%;
+    margin: 0 0 22px;
+    color: #134E4A;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* =========================================
+   TARJETAS DE INICIO
+========================================= */
+
+.panel-cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Tarjeta individual */
+.panel-card {
+    display: block;
+    width: 240px;
+    padding: 24px 20px;
+    box-sizing: border-box;
+
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-top: 4px solid #0F766E;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+
+    text-decoration: none;
+    color: #1F2937;
+    text-align: center;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+.panel-card:hover {
+    border-top-color: #134E4A;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.10);
+    transform: translateY(-3px);
+}
+
+/* Títulos de las tarjetas */
+.panel-card h3 {
+    margin: 0 0 10px;
+    color: #0F766E;
+    font-size: 19px;
+}
+
+/* Descripciones de las tarjetas */
+.panel-card p {
+    margin: 0;
+    color: #4B5563;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* =========================================
+   MÓDULOS PRÓXIMAMENTE
+========================================= */
+
+.panel-card-pending {
+    cursor: default;
+}
+
+.panel-card-pending:hover {
+    transform: none;
+}
+
+.modulo-pendiente {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 5px 10px;
+
+    border-radius: 20px;
+    background: #F1F5F9;
+    color: #64748B;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================
+   PANTALLAS MEDIANAS
+========================================= */
+
+@media (max-width: 1000px) {
+    .content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .panel-cards {
+        gap: 16px;
+    }
+
+    .panel-card {
+        width: 220px;
+    }
+}
+
+/* =========================================
+   PANTALLAS PEQUEÑAS
+========================================= */
+
+@media (max-width: 700px) {
+    .content,
+    .content.expanded {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+        padding: 85px 15px 30px;
+    }
+
+    .content h1 {
+        font-size: 25px;
+    }
+
+    .panel-descripcion {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .panel-section-title {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .panel-cards {
+        gap: 14px;
+    }
+
+    .panel-card {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+/* =========================================
+   PANTALLAS MUY PEQUEÑAS
+========================================= */
+
+@media (max-width: 380px) {
+    .content,
+    .content.expanded {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .content h1 {
+        font-size: 22px;
+    }
+
+    .panel-card {
+        padding: 20px 15px;
+    }
+}

@@ -1,0 +1,991 @@
+
+/* =========================================
+   BARRA SUPERIOR
+========================================= */
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1E1E2F;
+    color: #FFFFFF;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo {
+    margin-left: 50px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* =========================================
+   CONTENEDOR DERECHO: SEDE Y PERFIL
+========================================= */
+
+.profile-container {
+    position: relative;
+    flex-shrink: 0;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+/* =========================================
+   SELECTOR DE SEDE
+========================================= */
+
+.sede-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.sede-selector label {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sede-selector select {
+    width: auto;
+    max-width: 180px;
+    min-width: 100px;
+    padding: 8px 28px 8px 10px;
+    border: 1px solid #4B5563;
+    border-radius: 8px;
+    background: #2B2B40;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sede-selector select:focus {
+    outline: 2px solid #0F766E;
+    outline-offset: 2px;
+}
+
+.sede-selector option {
+    background: #1E1E2F;
+    color: #FFFFFF;
+}
+
+/* =========================================
+   BOTÓN CIRCULAR DEL PERFIL
+========================================= */
+
+.profile {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #0F766E;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.profile:hover {
+    box-shadow: 0 0 12px rgba(15, 118, 110, 0.5);
+    transform: scale(1.06);
+}
+
+.profile:focus-visible {
+    outline: 3px solid #5EEAD4;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   MENÚ DESPLEGABLE DEL PERFIL
+========================================= */
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 280px;
+    max-width: calc(100vw - 20px);
+    padding: 12px;
+    background: #FFFFFF;
+    color: #1F2937;
+    border: 1px solid #E5E7EB;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1100;
+    box-sizing: border-box;
+}
+
+.dropdown-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px 8px 16px;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 10px;
+}
+
+.avatar-large {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #0F766E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 12px;
+    color: #FFFFFF;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.dropdown-header p {
+    width: 100%;
+    margin: 3px 0;
+    overflow-wrap: anywhere;
+}
+
+.dropdown-header p:first-of-type {
+    color: #134E4A;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.dropdown-header p:last-of-type {
+    color: #6B7280;
+    font-size: 13px;
+}
+
+/* =========================================
+   BOTÓN MI PERFIL
+========================================= */
+
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0;
+    padding: 11px 14px;
+    border: 1px solid #D1E7E5;
+    border-radius: 9px;
+    background: #F0FDFA;
+    color: #134E4A;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background: #CCFBF1;
+    border-color: #99F6E4;
+}
+
+.dropdown-link:active {
+    transform: scale(0.98);
+}
+
+.dropdown-link:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.3);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   SELECTOR DE APARIENCIA
+========================================= */
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 8px;
+    margin-top: 5px;
+    color: #1F2937;
+    font-size: 14px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.theme-toggle {
+    width: 46px;
+    height: 26px;
+    min-width: 46px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #CBD5E1;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.theme-toggle[aria-checked="true"] {
+    background: #0F766E;
+    justify-content: flex-end;
+}
+
+.theme-toggle-knob {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.3);
+    outline-offset: 3px;
+}
+
+/* =========================================
+   BOTÓN CERRAR SESIÓN
+========================================= */
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 9px;
+    background: #DC2626;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #B91C1C;
+}
+
+.logout-btn:active {
+    transform: scale(0.98);
+}
+
+.logout-btn:focus-visible {
+    outline: 3px solid rgba(220, 38, 38, 0.3);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   ELEMENTOS OCULTOS
+========================================= */
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================
+   BARRA LATERAL
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 60px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #1F2937;
+    transition: width 0.25s ease;
+    z-index: 1100;
+    box-sizing: border-box;
+}
+
+/* Botón de las tres rayitas */
+
+.sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: #374151;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1200;
+}
+
+.sidebar-toggle:hover {
+    background: #4B5563;
+}
+
+.sidebar-toggle:focus-visible {
+    outline: 2px solid #5EEAD4;
+    outline-offset: 2px;
+}
+
+/* =========================================
+   SECCIONES DEL SIDEBAR
+========================================= */
+
+.sidebar-section {
+    padding: 20px 20px 8px;
+    box-sizing: border-box;
+}
+
+.section-title {
+    display: block;
+    color: #9CA3AF;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .sidebar-section {
+    display: none;
+}
+
+/* =========================================
+   OPCIONES DEL MENÚ
+========================================= */
+
+.menu-item,
+.menu-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    color: #FFFFFF;
+    padding: 12px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.menu-item:hover,
+.menu-title:hover {
+    background: #374151;
+}
+
+.menu-item:focus-visible,
+.menu-title:focus-visible {
+    outline: 2px solid #5EEAD4;
+    outline-offset: -2px;
+}
+
+.menu-text {
+    min-width: 0;
+    overflow-wrap: break-word;
+    line-height: 1.35;
+}
+
+/* =========================================
+   ICONOS SVG DEL SIDEBAR
+========================================= */
+
+.sidebar .menu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 25px;
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    color: #5EEAD4;
+}
+
+.sidebar .menu-icon svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sidebar .menu-item:hover .menu-icon,
+.sidebar .menu-title:hover .menu-icon {
+    color: #FFFFFF;
+}
+
+.sidebar.collapsed .menu-icon {
+    flex-basis: 25px;
+    width: 25px;
+    min-width: 25px;
+}
+
+html.dark-mode .sidebar .menu-icon {
+    color: #5EEAD4;
+}
+
+html.dark-mode .sidebar .menu-item:hover .menu-icon,
+html.dark-mode .sidebar .menu-title:hover .menu-icon {
+    color: #FFFFFF;
+}
+
+/* Flecha del submenú */
+
+.menu-arrow {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+/* =========================================
+   SUBMENÚ DE MEDICAMENTOS
+========================================= */
+
+.menu-group {
+    width: 100%;
+}
+
+.submenu {
+    padding: 4px 0 4px 20px;
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 12px;
+    color: #D1D5DB;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.4;
+}
+
+.submenu a:hover {
+    background: #374151;
+    color: #FFFFFF;
+}
+
+/* =========================================
+   SIDEBAR CONTRAÍDO
+========================================= */
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar.collapsed .menu-item,
+.sidebar.collapsed .menu-title {
+    justify-content: center;
+    gap: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .menu-arrow {
+    display: none;
+}
+
+.sidebar.collapsed .submenu {
+    padding: 4px;
+}
+
+.sidebar.collapsed .submenu a {
+    padding: 10px 2px;
+    text-align: center;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   TOOLTIP FLOTANTE DEL SIDEBAR
+========================================= */
+
+/*
+ * Este elemento lo crea JavaScript fuera del sidebar.
+ * Así no lo recortan los estilos overflow del menú.
+ */
+
+.sidebar-tooltip {
+    position: fixed;
+    display: block;
+
+    width: max-content;
+    max-width: 240px;
+    padding: 10px 14px;
+    box-sizing: border-box;
+
+    background: #111827;
+    color: #FFFFFF;
+
+    border: 1px solid #374151;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+
+    z-index: 99999;
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-50%) translateX(-5px);
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0.15s ease;
+}
+
+.sidebar-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+.sidebar-tooltip::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -5px;
+
+    width: 8px;
+    height: 8px;
+
+    background: #111827;
+    border-left: 1px solid #374151;
+    border-bottom: 1px solid #374151;
+
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* Tooltip en modo oscuro */
+
+html.dark-mode .sidebar-tooltip {
+    background: #0B1720;
+    color: #F9FAFB;
+    border-color: #3B515D;
+}
+
+html.dark-mode .sidebar-tooltip::before {
+    background: #0B1720;
+    border-color: #3B515D;
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.main-content,
+.content {
+    margin-left: 220px;
+    padding: 90px 30px 30px;
+    transition: margin-left 0.25s ease;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.main-content.expanded,
+.content.expanded {
+    margin-left: 70px;
+}
+
+/* =========================================
+   ALERTAS COMPARTIDAS
+========================================= */
+
+.alerta-error.flotante {
+    position: fixed;
+    top: 75px;
+    right: 16px;
+    z-index: 1200;
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   MODO OSCURO: BARRAS Y MENÚ
+========================================= */
+
+html.dark-mode body {
+    background: #111827;
+    color: #E5E7EB;
+}
+
+html.dark-mode .topbar {
+    background: #111F2D;
+    color: #F9FAFB;
+    border-bottom: 1px solid #293847;
+}
+
+html.dark-mode .sidebar {
+    background: #172A35;
+    border-right: 1px solid #293847;
+}
+
+html.dark-mode .sidebar-toggle {
+    background: #24504F;
+    color: #FFFFFF;
+}
+
+html.dark-mode .sidebar-toggle:hover {
+    background: #0F766E;
+}
+
+html.dark-mode .section-title {
+    color: #9CA3AF;
+}
+
+html.dark-mode .menu-item:hover,
+html.dark-mode .menu-title:hover,
+html.dark-mode .submenu a:hover {
+    background: #24504F;
+}
+
+html.dark-mode .submenu a {
+    color: #D1D5DB;
+}
+
+/* =========================================
+   MODO OSCURO: MENÚ DESPLEGABLE
+========================================= */
+
+html.dark-mode .dropdown {
+    background: #1F2937;
+    color: #F9FAFB;
+    border-color: #374151;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+html.dark-mode .dropdown-header {
+    border-bottom-color: #374151;
+}
+
+html.dark-mode .dropdown-header p:first-of-type {
+    color: #5EEAD4;
+}
+
+html.dark-mode .dropdown-header p:last-of-type {
+    color: #9CA3AF;
+}
+
+html.dark-mode .avatar-large,
+html.dark-mode .profile {
+    background: #0F766E;
+    color: #FFFFFF;
+}
+
+/* Botón Mi perfil */
+
+html.dark-mode .dropdown-link {
+    background: #172A35;
+    color: #5EEAD4;
+    border-color: #374151;
+}
+
+html.dark-mode .dropdown-link:hover {
+    background: #24504F;
+    border-color: #0F766E;
+}
+
+/* Selector de apariencia */
+
+html.dark-mode .theme-option {
+    color: #E5E7EB;
+    border-top-color: #374151;
+}
+
+html.dark-mode .theme-toggle {
+    background: #4B5563;
+}
+
+html.dark-mode .theme-toggle[aria-checked="true"] {
+    background: #0F766E;
+}
+
+/* Selector de sede */
+
+html.dark-mode .sede-selector select {
+    background: #172A35;
+    color: #F9FAFB;
+    border-color: #4B5563;
+}
+
+html.dark-mode .sede-selector option {
+    background: #172A35;
+    color: #F9FAFB;
+}
+
+/* Cerrar sesión */
+
+html.dark-mode .logout-btn {
+    background: #B91C1C;
+    color: #FFFFFF;
+}
+
+html.dark-mode .logout-btn:hover {
+    background: #991B1B;
+}
+
+/* =========================================
+   MODO OSCURO: CONTENIDO Y TARJETAS
+========================================= */
+
+html.dark-mode .content,
+html.dark-mode .main-content {
+    background: #111827;
+    color: #E5E7EB;
+}
+
+html.dark-mode .content h1,
+html.dark-mode .main-content h1,
+html.dark-mode h1 {
+    color: #5EEAD4;
+}
+
+html.dark-mode .panel-descripcion {
+    color: #CBD5E1;
+}
+
+html.dark-mode .panel-card,
+html.dark-mode .container,
+html.dark-mode .form-perfil,
+html.dark-mode .form-password {
+    background: #1F2937;
+    color: #E5E7EB;
+    border-color: #374151;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+html.dark-mode .panel-card {
+    border-top-color: #0F766E;
+}
+
+html.dark-mode .panel-card h3 {
+    color: #5EEAD4;
+}
+
+html.dark-mode .panel-card p {
+    color: #D1D5DB;
+}
+
+html.dark-mode .panel-card:hover {
+    background: #263545;
+    border-top-color: #5EEAD4;
+}
+
+/* =========================================
+   MODO OSCURO: FORMULARIOS
+========================================= */
+
+html.dark-mode label,
+html.dark-mode .form-perfil label,
+html.dark-mode .form-password label {
+    color: #E5E7EB;
+}
+
+html.dark-mode input,
+html.dark-mode textarea,
+html.dark-mode select,
+html.dark-mode .form-perfil input,
+html.dark-mode .form-password input {
+    background: #111827;
+    color: #F9FAFB;
+    border-color: #4B5563;
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+    color: #9CA3AF;
+}
+
+html.dark-mode input:disabled,
+html.dark-mode .form-perfil input:disabled {
+    background: #273444;
+    color: #9CA3AF;
+}
+
+html.dark-mode .form-perfil small,
+html.dark-mode .form-password small {
+    color: #CBD5E1;
+}
+
+/* =========================================
+   MODO OSCURO: TABLAS
+========================================= */
+
+html.dark-mode table {
+    background: #1F2937;
+    color: #E5E7EB;
+}
+
+html.dark-mode th {
+    background: #115E59;
+    color: #FFFFFF;
+    border-color: #374151;
+}
+
+html.dark-mode td {
+    color: #E5E7EB;
+    border-color: #374151;
+}
+
+html.dark-mode tr:nth-child(even),
+html.dark-mode .detalle {
+    background: #263545;
+}
+
+html.dark-mode tr:hover {
+    background: #30434F;
+}
+
+/* Botones generales */
+
+html.dark-mode .btn,
+html.dark-mode button:not(.profile):not(.sidebar-toggle):not(.theme-toggle) {
+    color: #FFFFFF;
+}
+
+/* Alertas */
+
+html.dark-mode .alerta-success,
+html.dark-mode .success {
+    background: #143B32;
+    color: #A7F3D0;
+    border-color: #246653;
+}
+
+html.dark-mode .alerta-error,
+html.dark-mode .error {
+    background: #451F27;
+    color: #FECACA;
+    border-color: #7F303B;
+}
+
+/* =========================================
+   RESPONSIVE: TABLETAS Y MÓVILES
+========================================= */
+
+@media (max-width: 700px) {
+    .main-content,
+    .content {
+        margin-left: 70px;
+        padding: 85px 12px 20px;
+    }
+
+    .logo {
+        margin-left: 45px;
+        font-size: 14px;
+    }
+
+    .profile-container {
+        gap: 8px;
+    }
+
+    .sede-selector {
+        gap: 4px;
+    }
+
+    .sede-selector label {
+        display: inline;
+        font-size: 12px;
+    }
+
+    .sede-selector select {
+        max-width: 115px;
+        min-width: 75px;
+        padding: 7px 4px;
+        font-size: 12px;
+    }
+
+    .profile {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    .dropdown {
+        width: 280px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE: PANTALLAS MUY PEQUEÑAS
+========================================= */
+
+@media (max-width: 380px) {
+    .topbar {
+        padding: 0 8px;
+    }
+
+    .logo {
+        margin-left: 42px;
+        font-size: 12px;
+    }
+
+    .profile-container {
+        gap: 5px;
+    }
+
+    .sede-selector label {
+        display: none;
+    }
+
+    .sede-selector select {
+        max-width: 95px;
+        min-width: 65px;
+    }
+
+    .dropdown {
+        right: 0;
+        width: 270px;
+        max-width: calc(100vw - 16px);
+    }
+}

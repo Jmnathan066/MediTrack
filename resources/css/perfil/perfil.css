@@ -1,0 +1,114 @@
+
+/* ===== FORMULARIO DE PERFIL ===== */
+.form-perfil {
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    padding: 28px;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+.form-perfil label {
+    margin-top: 14px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-perfil input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #1F2937;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-perfil input:focus {
+    outline: none;
+    border-color: #0F766E;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+/* Dirección ocupa las dos columnas */
+.form-perfil label:nth-of-type(5),
+.form-perfil input[name="direccion"] {
+    grid-column: 1 / -1;
+}
+
+/* Campos que no se pueden editar */
+.form-perfil input:disabled {
+    background: #F1F5F9;
+    color: #64748B;
+    cursor: not-allowed;
+}
+
+.form-perfil small {
+    color: #64748B;
+    margin-top: 3px;
+}
+
+/* Botón de guardar */
+.form-perfil button {
+    grid-column: 1 / -1;
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: #0F766E;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.form-perfil button:hover {
+    background: #134E4A;
+}
+
+/* ===== ALERTAS ===== */
+.alerta-success {
+    background: #D1FAE5;
+    color: #065F46;
+    padding: 12px 16px;
+    border: 1px solid #A7F3D0;
+    border-radius: 7px;
+    margin-bottom: 16px;
+}
+
+.alerta-error {
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 12px 16px;
+    border: 1px solid #FECACA;
+    border-radius: 7px;
+    margin-bottom: 16px;
+}
+
+.alerta-error ul {
+    margin-left: 18px;
+}
+
+/* ===== PANTALLAS PEQUEÑAS ===== */
+@media (max-width: 700px) {
+    .form-perfil {
+        grid-template-columns: 1fr;
+        padding: 20px 16px;
+    }
+
+    .form-perfil label:nth-of-type(5),
+    .form-perfil input[name="direccion"] {
+        grid-column: 1;
+    }
+}

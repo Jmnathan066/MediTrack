@@ -1,0 +1,860 @@
+
+/* =========================================================
+   MEDITrack EPS - GESTIÓN DE USUARIOS
+   Diseño compacto, limpio, adaptable y compatible con temas
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. VARIABLES Y CONTENEDOR PRINCIPAL
+   --------------------------------------------------------- */
+
+
+.usuarios-page {
+    --usuarios-fondo: var(--card-bg, #ffffff);
+    --usuarios-texto: var(--text-color, #1f2937);
+    --usuarios-secundario: var(--muted-text, #64748b);
+    --usuarios-borde: var(--border-color, #e2e8f0);
+    --usuarios-campo: var(--input-bg, #f8fafc);
+    --usuarios-primario: #2563eb;
+    --usuarios-primario-hover: #1d4ed8;
+
+    width: calc(100% - 36px);
+    max-width: 1180px;
+    min-width: 0;
+    margin: 62px 260px;
+    padding: 20px 16px;
+    color: var(--usuarios-texto);
+    box-sizing: border-box;
+}
+
+.usuarios-page *,
+.usuarios-page *::before,
+.usuarios-page *::after {
+    box-sizing: border-box;
+}
+
+.usuarios-page h1,
+.usuarios-page h2,
+.usuarios-page p {
+    overflow-wrap: anywhere;
+}
+
+/* ---------------------------------------------------------
+   2. ENCABEZADO
+   --------------------------------------------------------- */
+
+.usuarios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-width: 0;
+    margin-bottom: 18px;
+}
+
+.usuarios-eyebrow {
+    margin: 0 0 5px;
+    color: var(--usuarios-secundario);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.3px;
+}
+
+.usuarios-header h1 {
+    margin: 0;
+    color: var(--usuarios-texto);
+    font-size: clamp(23px, 2vw, 29px);
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.usuarios-subtitle {
+    margin: 6px 0 0;
+    color: var(--usuarios-secundario);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------------
+   3. MENSAJES DEL SISTEMA
+   --------------------------------------------------------- */
+
+.usuarios-alerta {
+    margin: 0 0 14px;
+    padding: 11px 14px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.usuarios-alerta-success {
+    border-color: #86efac;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.usuarios-alerta-error {
+    border-color: #fca5a5;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ---------------------------------------------------------
+   4. TARJETAS DE RESUMEN
+   --------------------------------------------------------- */
+
+.usuarios-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 16px;
+}
+
+.usuarios-stat {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border: 1px solid var(--usuarios-borde);
+    border-radius: 11px;
+    background: var(--usuarios-fondo);
+    box-shadow: 0 2px 7px rgb(15 23 42 / 4%);
+}
+
+.usuarios-stat span {
+    color: var(--usuarios-secundario);
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.usuarios-stat strong {
+    color: var(--usuarios-texto);
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.1;
+}
+
+/* ---------------------------------------------------------
+   5. PANEL DE USUARIOS
+   --------------------------------------------------------- */
+
+.usuarios-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--usuarios-borde);
+    border-radius: 12px;
+    background: var(--usuarios-fondo);
+    box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+
+.usuarios-panel-heading {
+    min-width: 0;
+    margin-bottom: 16px;
+}
+
+.usuarios-panel-heading h2 {
+    margin: 0;
+    color: var(--usuarios-texto);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.usuarios-panel-heading p {
+    margin: 5px 0 0;
+    color: var(--usuarios-secundario);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------------
+   6. BÚSQUEDA Y FILTROS
+   --------------------------------------------------------- */
+
+.usuarios-filtros {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(135px, 185px) auto;
+    align-items: end;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 16px;
+}
+
+.usuarios-campo {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.usuarios-campo label {
+    color: var(--usuarios-texto);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.usuarios-campo input,
+.usuarios-campo select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 38px;
+    padding: 8px 10px;
+    border: 1px solid var(--usuarios-borde);
+    border-radius: 8px;
+    outline: none;
+    background: var(--usuarios-campo);
+    color: var(--usuarios-texto);
+    font-family: inherit;
+    font-size: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.usuarios-campo input::placeholder {
+    color: var(--usuarios-secundario);
+    opacity: 0.85;
+}
+
+.usuarios-campo input:focus,
+.usuarios-campo select:focus {
+    border-color: var(--usuarios-primario);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 13%);
+}
+
+.usuarios-acciones-filtro {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 7px;
+}
+
+/* ---------------------------------------------------------
+   7. BOTONES GENERALES
+   --------------------------------------------------------- */
+
+.usuarios-page .usuarios-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.usuarios-page .usuarios-btn:active,
+.usuarios-page .usuarios-btn-estado:active {
+    transform: scale(0.98);
+}
+
+.usuarios-page .usuarios-btn:focus-visible,
+.usuarios-page .usuarios-btn-estado:focus-visible {
+    outline: 3px solid rgb(59 130 246 / 35%);
+    outline-offset: 2px;
+}
+
+.usuarios-page .usuarios-btn-primary {
+    border-color: var(--usuarios-primario);
+    background: var(--usuarios-primario);
+    color: #ffffff;
+}
+
+.usuarios-page .usuarios-btn-primary:hover {
+    border-color: var(--usuarios-primario-hover);
+    background: var(--usuarios-primario-hover);
+    color: #ffffff;
+}
+
+.usuarios-page .usuarios-btn-secondary {
+    border-color: var(--usuarios-borde);
+    background: var(--usuarios-campo);
+    color: var(--usuarios-texto);
+}
+
+.usuarios-page .usuarios-btn-secondary:hover {
+    border-color: #94a3b8;
+    background: var(--usuarios-borde);
+    color: var(--usuarios-texto);
+}
+
+/* ---------------------------------------------------------
+   8. TABLA
+   --------------------------------------------------------- */
+
+.usuarios-tabla-contenedor {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid var(--usuarios-borde);
+    border-radius: 9px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.usuarios-tabla {
+    width: 100%;
+    min-width: 680px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: left;
+}
+
+/* Distribución de las cinco columnas */
+
+.usuarios-tabla th:nth-child(1),
+.usuarios-tabla td:nth-child(1) {
+    width: 29%;
+}
+
+.usuarios-tabla th:nth-child(2),
+.usuarios-tabla td:nth-child(2) {
+    width: 15%;
+}
+
+.usuarios-tabla th:nth-child(3),
+.usuarios-tabla td:nth-child(3) {
+    width: 16%;
+}
+
+.usuarios-tabla th:nth-child(4),
+.usuarios-tabla td:nth-child(4) {
+    width: 16%;
+}
+
+.usuarios-tabla th:nth-child(5),
+.usuarios-tabla td:nth-child(5) {
+    width: 24%;
+}
+
+.usuarios-tabla th {
+    padding: 11px 9px;
+    border-bottom: 1px solid var(--usuarios-borde);
+    background: var(--usuarios-campo);
+    color: var(--usuarios-secundario);
+    font-size: 10px;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    overflow-wrap: anywhere;
+}
+
+.usuarios-tabla td {
+    padding: 11px 9px;
+    border-bottom: 1px solid var(--usuarios-borde);
+    color: var(--usuarios-texto);
+    font-size: 12px;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.usuarios-tabla tbody tr {
+    background: var(--usuarios-fondo);
+    transition: background-color 0.15s ease;
+}
+
+.usuarios-tabla tbody tr:hover {
+    background: var(--usuarios-campo);
+}
+
+.usuarios-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Identidad del usuario */
+
+.usuarios-identidad {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.usuarios-identidad strong {
+    color: var(--usuarios-texto);
+    font-size: 12px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.usuarios-identidad span {
+    color: var(--usuarios-secundario);
+    font-size: 11px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.usuarios-tabla td form {
+    margin: 0;
+}
+
+/* ---------------------------------------------------------
+   9. ETIQUETAS DE ROL Y ESTADO
+   --------------------------------------------------------- */
+
+.usuarios-rol-badge,
+.usuarios-estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.usuarios-rol-badge {
+    border-color: var(--usuarios-borde);
+    background: var(--usuarios-campo);
+    color: var(--usuarios-texto);
+}
+
+.usuarios-page .usuarios-estado.estado-activo {
+    border-color: #86efac;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.usuarios-page .usuarios-estado.estado-inactivo {
+    border-color: #fca5a5;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.usuarios-propia-cuenta {
+    color: var(--usuarios-secundario);
+    font-size: 11px;
+}
+
+.usuarios-vacio {
+    padding: 26px 12px !important;
+    color: var(--usuarios-secundario) !important;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------
+   10. BOTONES ACTIVAR Y DESACTIVAR
+   --------------------------------------------------------- */
+
+.usuarios-page .usuarios-btn-estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 32px;
+    padding: 7px 9px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.usuarios-page .usuarios-btn-estado.btn-desactivar {
+    border-color: #fdba74;
+    background: #fff7ed;
+    color: #9a3412;
+}
+
+.usuarios-page .usuarios-btn-estado.btn-desactivar:hover {
+    border-color: #fb923c;
+    background: #ffedd5;
+    color: #7c2d12;
+}
+
+.usuarios-page .usuarios-btn-estado.btn-activar {
+    border-color: #86efac;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.usuarios-page .usuarios-btn-estado.btn-activar:hover {
+    border-color: #4ade80;
+    background: #bbf7d0;
+    color: #14532d;
+}
+
+/* ---------------------------------------------------------
+   11. PAGINACIÓN
+   --------------------------------------------------------- */
+
+.usuarios-paginacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-width: 0;
+    padding-top: 14px;
+    color: var(--usuarios-secundario);
+    font-size: 11px;
+}
+
+.usuarios-paginacion > span {
+    overflow-wrap: anywhere;
+}
+
+.usuarios-paginacion nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.usuarios-paginacion nav p {
+    margin: 0;
+}
+
+.usuarios-paginacion nav a,
+.usuarios-paginacion nav span[aria-current="page"] span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 6px 9px;
+    border: 1px solid var(--usuarios-borde);
+    border-radius: 7px;
+    background: var(--usuarios-fondo);
+    color: var(--usuarios-texto);
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.usuarios-paginacion nav a:hover {
+    background: var(--usuarios-campo);
+}
+
+.usuarios-paginacion nav span[aria-current="page"] span {
+    border-color: var(--usuarios-primario);
+    background: var(--usuarios-primario);
+    color: #ffffff;
+}
+
+/* ---------------------------------------------------------
+   12. MODO OSCURO
+   --------------------------------------------------------- */
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page {
+    --usuarios-fondo: var(--card-bg, #1e293b);
+    --usuarios-texto: var(--text-color, #e2e8f0);
+    --usuarios-secundario: var(--muted-text, #a3b2c7);
+    --usuarios-borde: var(--border-color, #334155);
+    --usuarios-campo: var(--input-bg, #0f172a);
+
+    color-scheme: dark;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-stat,
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-panel {
+    box-shadow: 0 3px 12px rgb(0 0 0 / 12%);
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-alerta-success {
+    border-color: #166534;
+    background: #142f26;
+    color: #bbf7d0;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-alerta-error {
+    border-color: #991b1b;
+    background: #351c25;
+    color: #fecaca;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-estado.estado-activo {
+    border-color: #166534;
+    background: #142f26;
+    color: #bbf7d0;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-estado.estado-inactivo {
+    border-color: #991b1b;
+    background: #351c25;
+    color: #fecaca;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-btn-estado.btn-desactivar {
+    border-color: #9a3412;
+    background: #3b251b;
+    color: #fed7aa;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-btn-estado.btn-desactivar:hover {
+    background: #57301f;
+    color: #ffedd5;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-btn-estado.btn-activar {
+    border-color: #166534;
+    background: #142f26;
+    color: #bbf7d0;
+}
+
+:is(
+    html.dark,
+    body.dark,
+    html.dark-mode,
+    body.dark-mode,
+    html[data-theme="dark"],
+    body[data-theme="dark"],
+    [data-bs-theme="dark"]
+) .usuarios-page .usuarios-btn-estado.btn-activar:hover {
+    background: #1b4535;
+    color: #dcfce7;
+}
+
+/* ---------------------------------------------------------
+   13. PANTALLAS MEDIANAS Y PORTÁTILES
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .usuarios-page {
+        padding: 16px;
+    }
+
+    .usuarios-panel {
+        padding: 15px;
+    }
+
+    .usuarios-filtros {
+        grid-template-columns: minmax(0, 1fr) minmax(125px, 170px);
+    }
+
+    .usuarios-acciones-filtro {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ---------------------------------------------------------
+   14. TABLETAS Y VENTANAS ESTRECHAS
+   --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+    .usuarios-page {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 8px;
+        padding: 12px 8px;
+    }
+
+    .usuarios-header {
+        margin-bottom: 15px;
+    }
+
+    .usuarios-resumen {
+        gap: 9px;
+    }
+
+    .usuarios-stat {
+        padding: 12px;
+    }
+
+    .usuarios-stat strong {
+        font-size: 23px;
+    }
+
+    .usuarios-panel {
+        padding: 13px 11px;
+    }
+
+    .usuarios-filtros {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .usuarios-acciones-filtro {
+        grid-column: auto;
+    }
+
+    .usuarios-acciones-filtro .usuarios-btn {
+        flex: 1;
+    }
+
+    .usuarios-paginacion {
+        align-items: flex-start;
+    }
+}
+
+/* ---------------------------------------------------------
+   15. MÓVILES
+   --------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .usuarios-page {
+        padding: 12px 8px;
+    }
+
+    .usuarios-header h1 {
+        font-size: 23px;
+    }
+
+    .usuarios-subtitle {
+        font-size: 12px;
+    }
+
+    .usuarios-resumen {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .usuarios-stat {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+    }
+
+    .usuarios-stat strong {
+        font-size: 22px;
+    }
+
+    .usuarios-panel {
+        padding: 12px 8px;
+    }
+
+    .usuarios-tabla {
+        min-width: 680px;
+    }
+
+    .usuarios-paginacion {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* ---------------------------------------------------------
+   16. ACCESIBILIDAD: REDUCIR ANIMACIONES
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .usuarios-page *,
+    .usuarios-page *::before,
+    .usuarios-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

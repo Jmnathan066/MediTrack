@@ -1,0 +1,656 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #0f8b80;
+    --primary-dark: #08766e;
+    --primary-light: #e6f7f4;
+    --accent: #a7f3d0;
+    --text: #243640;
+    --text-light: #71818a;
+    --background: #f5f8fa;
+    --white: #ffffff;
+    --border: #e1e9ec;
+    --danger: #b93838;
+    --success: #18794e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text);
+    background: var(--background);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.login-page {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* PANEL IZQUIERDO */
+
+.brand-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 45px;
+    overflow: hidden;
+    color: var(--white);
+    background: linear-gradient(145deg, #176c75 0%, #0f8b80 55%, #20a494 100%);
+}
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 440px;
+    min-height: 610px;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+}
+
+.logo-icon {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon svg {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+
+.brand-name {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+}
+
+.brand-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.brand-subtitle {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.brand-message {
+    margin: 65px 0;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand-message h1 {
+    max-width: 430px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(32px, 3.3vw, 43px);
+    font-weight: 700;
+    line-height: 1.23;
+    letter-spacing: -1.4px;
+}
+
+.brand-message h1 span {
+    display: block;
+    color: #b9f6df;
+}
+
+.brand-message p {
+    max-width: 360px;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.brand-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #a7f3d0;
+    box-shadow: 0 0 0 4px rgba(167, 243, 208, 0.15);
+}
+
+.decoration {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+}
+
+.decoration-one {
+    top: -115px;
+    right: -100px;
+    width: 330px;
+    height: 330px;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.decoration-two {
+    right: -80px;
+    bottom: -130px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.decoration-three {
+    right: 55px;
+    bottom: 80px;
+    width: 90px;
+    height: 90px;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* PANEL DEL FORMULARIO */
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 45px 35px;
+    background: #f8fafb;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 410px;
+    padding: 35px;
+    border: 1px solid #e8eef0;
+    border-radius: 23px;
+    background: var(--white);
+    box-shadow: 0 12px 35px rgba(35, 70, 78, 0.055);
+}
+
+.mobile-brand {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.mobile-logo-icon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: var(--primary);
+}
+
+.mobile-logo-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.mobile-brand > span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.mobile-brand small {
+    color: var(--primary);
+    font-size: 12px;
+}
+
+.form-heading {
+    margin-bottom: 28px;
+}
+
+.form-eyebrow {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.form-heading h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.8px;
+}
+
+.form-heading p {
+    margin-top: 8px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ALERTAS */
+
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.alert p + p {
+    margin-top: 4px;
+}
+
+.alert-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.alert-error {
+    color: var(--danger);
+    border-color: #f3d5d5;
+    background: #fff5f5;
+}
+
+.alert-error .alert-icon {
+    color: white;
+    background: var(--danger);
+}
+
+.alert-success {
+    color: var(--success);
+    border-color: #ccebd9;
+    background: #f0fbf4;
+}
+
+.alert-success .alert-icon {
+    color: white;
+    background: var(--success);
+}
+
+
+/* CAMPOS */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #354851;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #84959c;
+    pointer-events: none;
+}
+
+.input-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    min-width: 0;
+    height: 49px;
+    padding: 0 46px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    color: var(--text);
+    background: #fbfcfd;
+    font-size: 13px;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper input::placeholder {
+    color: #9ba9af;
+}
+
+.input-wrapper input:hover {
+    border-color: #bdcfce;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(15, 139, 128, 0.1);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 9px;
+    color: #84959c;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.toggle-password svg {
+    width: 19px;
+    height: 19px;
+}
+
+
+/* ENLACES Y BOTÓN */
+
+.forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -8px;
+}
+
+.forgot-password a {
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.forgot-password a:hover,
+.register-section a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 49px;
+    margin-top: 2px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    color: var(--white);
+    background: var(--primary);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.login-button:hover {
+    transform: translateY(-1px);
+    background: var(--primary-dark);
+    box-shadow: 0 6px 14px rgba(15, 139, 128, 0.18);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-button svg {
+    width: 19px;
+    height: 19px;
+    transition: transform 0.2s;
+}
+
+.login-button:hover svg {
+    transform: translateX(3px);
+}
+
+.login-button:focus-visible {
+    outline: 3px solid rgba(15, 139, 128, 0.3);
+    outline-offset: 3px;
+}
+
+
+/* REGISTRO Y SEGURIDAD */
+
+.register-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 25px;
+    color: var(--text-light);
+    font-size: 12px;
+    text-align: center;
+}
+
+.register-section a {
+    color: var(--primary-dark);
+    font-weight: 800;
+}
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #edf1f2;
+    color: #829198;
+    font-size: 11px;
+}
+
+.security-note svg {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+}
+
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+    .login-page {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .brand-panel {
+        padding: 32px;
+    }
+
+    .brand-content {
+        min-height: 560px;
+    }
+
+    .brand-message h1 {
+        font-size: 35px;
+    }
+
+    .form-panel {
+        padding: 30px 22px;
+    }
+
+    .login-box {
+        padding: 28px;
+    }
+}
+
+
+/* MÓVILES */
+
+@media (max-width: 720px) {
+    .login-page {
+        display: block;
+        min-height: 100vh;
+        padding: 22px 15px;
+        background: linear-gradient(150deg, #e8f8f5 0%, #f5f8fa 45%);
+    }
+
+    .brand-panel {
+        display: none;
+    }
+
+    .form-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 44px);
+        padding: 0;
+        background: transparent;
+    }
+
+    .login-box {
+        max-width: 440px;
+        padding: 28px 23px;
+        border: 1px solid rgba(221, 234, 235, 0.9);
+        border-radius: 22px;
+        background: var(--white);
+        box-shadow: 0 12px 35px rgba(35, 70, 78, 0.07);
+    }
+
+    .mobile-brand {
+        display: flex;
+    }
+
+    .form-heading {
+        margin-bottom: 25px;
+    }
+
+    .form-heading h2 {
+        font-size: 28px;
+    }
+
+    .login-form {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 380px) {
+    .login-page {
+        padding: 14px 10px;
+    }
+
+    .form-panel {
+        min-height: calc(100vh - 28px);
+    }
+
+    .login-box {
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .form-heading h2 {
+        font-size: 25px;
+    }
+
+    .register-section {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

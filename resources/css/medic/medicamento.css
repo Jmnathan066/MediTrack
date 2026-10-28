@@ -1,0 +1,247 @@
+
+/* ===== ESTILOS PROPIOS DE MEDICAMENTOS ===== */
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px;
+    box-sizing: border-box;
+
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+}
+
+/* ===== TÍTULOS ===== */
+h1 {
+    margin-bottom: 22px;
+    color: #134E4A;
+    font-size: 28px;
+}
+
+/* ===== BOTONES ===== */
+.btn,
+button {
+    display: inline-block;
+    background: #0F766E;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+button:hover {
+    background: #134E4A;
+}
+
+.btn:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.25);
+    outline-offset: 2px;
+}
+
+/* ===== TABLAS ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #FFFFFF;
+}
+
+th {
+    background: #0F766E;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #E2E8F0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+td {
+    color: #374151;
+}
+
+tr:nth-child(even) {
+    background: #F8FAFC;
+}
+
+tr:hover {
+    background: #F0FDFA;
+}
+
+.detalle {
+    background: #F8FAFC;
+}
+
+/* ===== FORMULARIOS ===== */
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+input,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background: #FFFFFF;
+    color: #1F2937;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0F766E;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ===== BÚSQUEDA DE MEDICAMENTOS ===== */
+.busqueda-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.busqueda-form input {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+/* ===== MENSAJES DEL MÓDULO ===== */
+.error {
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FECACA;
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.success {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #A7F3D0;
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+
+/* ========================================
+   VISTAS DE MEDICAMENTOS SIN BARRA LATERAL
+   ======================================== */
+
+.medicamento-main {
+    margin-left: 0 !important;
+    min-height: 100vh;
+    padding: 90px 24px 40px;
+    box-sizing: border-box;
+}
+
+.medicamento-page .container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Campos y etiquetas con separación uniforme */
+.medicamento-page form label {
+    display: block;
+    margin: 16px 0 6px;
+}
+
+.medicamento-page form input,
+.medicamento-page form textarea,
+.medicamento-page form select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.medicamento-page form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Acciones */
+.medicamento-page .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.medicamento-page .acciones button {
+    cursor: pointer;
+}
+
+
+/* ===== DISEÑO RESPONSIVO ===== */
+@media (max-width: 700px) {
+    .container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .busqueda-form {
+        flex-wrap: wrap;
+    }
+
+    .busqueda-form input {
+        flex-basis: 100%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 7px;
+    }
+
+        .medicamento-main {
+        padding: 85px 14px 30px;
+    }
+
+    .medicamento-page .acciones {
+        flex-direction: column;
+    }
+
+    .medicamento-page .acciones button {
+        width: 100%;
+    }
+
+
+}

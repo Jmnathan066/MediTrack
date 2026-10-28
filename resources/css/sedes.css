@@ -1,0 +1,758 @@
+/* =========================================
+   MEDITrack EPS - GESTIÓN DE SEDES
+   Compatible con html.dark-mode
+   ========================================= */
+
+/* =========================================
+   VARIABLES Y CONTENEDOR PRINCIPAL
+   ========================================= */
+
+.sedes-layout {
+    --sedes-bg: #f4f7fb;
+    --sedes-surface: #ffffff;
+    --sedes-surface-alt: #f8fafc;
+    --sedes-surface-hover: #f0f5f9;
+
+    --sedes-text: #243247;
+    --sedes-heading: #17324d;
+    --sedes-muted: #718096;
+
+    --sedes-border: #e2e8f0;
+    --sedes-input-bg: #fbfcfe;
+    --sedes-input-border: #dce4ed;
+
+    --sedes-primary: #118b84;
+    --sedes-primary-hover: #0c716c;
+    --sedes-primary-soft: #e0f5f2;
+
+    --sedes-blue-soft: #edf2ff;
+    --sedes-blue: #4265b2;
+
+    --sedes-green-soft: #e1f7eb;
+    --sedes-green: #188451;
+
+    --sedes-orange-soft: #fff0df;
+    --sedes-orange: #b66b19;
+
+    --sedes-danger-soft: #fff0f0;
+    --sedes-danger: #a52d35;
+    --sedes-danger-border: #f1c7c7;
+
+    --sedes-success-soft: #eaf9f0;
+    --sedes-success: #176b43;
+    --sedes-success-border: #bcebd0;
+
+    --sedes-info-soft: #f0f8ff;
+    --sedes-info: #53718d;
+
+    --sedes-shadow: 0 5px 20px rgba(29, 52, 77, 0.045);
+
+    margin-left: 250px;
+    min-height: 100vh;
+    background: var(--sedes-bg);
+    color: var(--sedes-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sedes-main {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.sedes-main *,
+.sedes-main *::before,
+.sedes-main *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   MODO OSCURO
+   Utiliza la clase real de partials.css:
+   html.dark-mode
+   ========================================= */
+
+html.dark-mode .sedes-layout {
+    --sedes-bg: #111827;
+    --sedes-surface: #1f2937;
+    --sedes-surface-alt: #273449;
+    --sedes-surface-hover: #334155;
+
+    --sedes-text: #e5e7eb;
+    --sedes-heading: #f1f5f9;
+    --sedes-muted: #a6b2c3;
+
+    --sedes-border: #374151;
+    --sedes-input-bg: #182230;
+    --sedes-input-border: #465367;
+
+    --sedes-primary: #2ac4b8;
+    --sedes-primary-hover: #20a69d;
+    --sedes-primary-soft: #153b3b;
+
+    --sedes-blue-soft: #263858;
+    --sedes-blue: #a8c1ff;
+
+    --sedes-green-soft: #173b2d;
+    --sedes-green: #83e0ac;
+
+    --sedes-orange-soft: #453321;
+    --sedes-orange: #ffc27a;
+
+    --sedes-danger-soft: #442629;
+    --sedes-danger: #ffadb3;
+    --sedes-danger-border: #744047;
+
+    --sedes-success-soft: #173b2d;
+    --sedes-success: #91e4b4;
+    --sedes-success-border: #285b43;
+
+    --sedes-info-soft: #1c3448;
+    --sedes-info: #b5d9f7;
+
+    --sedes-shadow: 0 5px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+.sedes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.sedes-eyebrow {
+    color: var(--sedes-primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.sedes-header h1 {
+    margin: 8px 0;
+    color: var(--sedes-heading);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 750;
+}
+
+.sedes-header p {
+    margin: 0;
+    color: var(--sedes-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.sedes-header-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+    background: var(--sedes-primary-soft);
+    color: var(--sedes-primary);
+    font-size: 32px;
+}
+
+/* =========================================
+   TARJETAS DE ESTADÍSTICAS
+   ========================================= */
+
+.sedes-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.sedes-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 22px;
+    background: var(--sedes-surface);
+    color: var(--sedes-text);
+    border: 1px solid var(--sedes-border);
+    border-radius: 15px;
+    box-shadow: var(--sedes-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.sedes-stat-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    background: var(--sedes-blue-soft);
+    color: var(--sedes-blue);
+    font-size: 23px;
+}
+
+.sedes-stat-icon.active-icon {
+    background: var(--sedes-green-soft);
+    color: var(--sedes-green);
+    font-weight: 800;
+}
+
+.sedes-stat-icon.inactive-icon {
+    background: var(--sedes-orange-soft);
+    color: var(--sedes-orange);
+    font-size: 27px;
+}
+
+.sedes-stat-card > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.sedes-stat-label {
+    color: var(--sedes-muted);
+    font-size: 13px;
+}
+
+.sedes-stat-card strong {
+    color: var(--sedes-heading);
+    font-size: 27px;
+    line-height: 1;
+}
+
+/* =========================================
+   PANELES PRINCIPALES
+   ========================================= */
+
+.sedes-content {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.5fr);
+    align-items: start;
+    gap: 22px;
+}
+
+.sedes-form-panel,
+.sedes-list-panel {
+    min-width: 0;
+    padding: 25px;
+    background: var(--sedes-surface);
+    color: var(--sedes-text);
+    border: 1px solid var(--sedes-border);
+    border-radius: 17px;
+    box-shadow: var(--sedes-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.sedes-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.sedes-section-heading h2 {
+    margin: 0 0 8px;
+    color: var(--sedes-heading);
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.sedes-section-heading p {
+    margin: 0;
+    color: var(--sedes-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sedes-heading-icon,
+.sedes-count {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: var(--sedes-primary-soft);
+    color: var(--sedes-primary);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.sedes-count {
+    background: var(--sedes-blue-soft);
+    color: var(--sedes-blue);
+    font-size: 15px;
+}
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
+
+.sedes-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.sedes-field label {
+    color: var(--sedes-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.sedes-field input {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid var(--sedes-input-border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--sedes-input-bg);
+    color: var(--sedes-text);
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    color-scheme: light;
+}
+
+html.dark-mode .sedes-field input {
+    color-scheme: dark;
+}
+
+.sedes-field input::placeholder {
+    color: var(--sedes-muted);
+    opacity: 0.8;
+}
+
+.sedes-field input:focus {
+    border-color: var(--sedes-primary);
+    box-shadow: 0 0 0 3px rgba(21, 155, 146, 0.16);
+    background: var(--sedes-surface);
+}
+
+.sedes-field-error {
+    color: var(--sedes-danger);
+    font-size: 12px;
+}
+
+/* =========================================
+   BOTÓN PRINCIPAL
+   ========================================= */
+
+.sedes-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--sedes-primary);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.sedes-submit:hover {
+    background: var(--sedes-primary-hover);
+    transform: translateY(-1px);
+}
+
+.sedes-submit span {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.sedes-submit:focus-visible,
+.sedes-action-btn:focus-visible,
+.sedes-cancel-link:focus-visible {
+    outline: 3px solid var(--sedes-primary);
+    outline-offset: 3px;
+}
+
+/* =========================================
+   NOTA INFORMATIVA
+   ========================================= */
+
+.sedes-form-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 13px;
+    border: 1px solid var(--sedes-border);
+    border-radius: 10px;
+    background: var(--sedes-info-soft);
+    color: var(--sedes-info);
+}
+
+.sedes-form-note span {
+    font-weight: 800;
+}
+
+.sedes-form-note p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   TABLA DE SEDES
+   ========================================= */
+
+.sedes-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 9px;
+}
+
+.sedes-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: var(--sedes-surface);
+    color: var(--sedes-text);
+}
+
+.sedes-table th {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--sedes-border);
+    background: var(--sedes-surface-alt);
+    color: var(--sedes-muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sedes-table td {
+    padding: 17px 12px;
+    border-bottom: 1px solid var(--sedes-border);
+    color: var(--sedes-text);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.sedes-table tbody tr {
+    background: var(--sedes-surface);
+    transition: background-color 0.2s;
+}
+
+.sedes-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.sedes-table tbody tr:hover {
+    background: var(--sedes-surface-hover);
+}
+
+.sedes-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 145px;
+}
+
+.sedes-building {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--sedes-primary-soft);
+    color: var(--sedes-primary);
+    font-size: 18px;
+}
+
+.sedes-name-cell > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sedes-name-cell strong {
+    color: var(--sedes-heading);
+    font-size: 12px;
+}
+
+.sedes-name-cell small {
+    color: var(--sedes-muted);
+    font-size: 11px;
+}
+
+/* =========================================
+   ESTADOS DE LAS SEDES
+   ========================================= */
+
+.sedes-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-active {
+    background: var(--sedes-green-soft);
+    color: var(--sedes-green);
+}
+
+.status-inactive {
+    background: var(--sedes-orange-soft);
+    color: var(--sedes-orange);
+}
+
+/* =========================================
+   ALERTAS
+   ========================================= */
+
+.sedes-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 15px 18px;
+    border-radius: 11px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.sedes-alert-success {
+    border: 1px solid var(--sedes-success-border);
+    background: var(--sedes-success-soft);
+    color: var(--sedes-success);
+}
+
+.sedes-alert-error {
+    border: 1px solid var(--sedes-danger-border);
+    background: var(--sedes-danger-soft);
+    color: var(--sedes-danger);
+}
+
+.sedes-alert ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+}
+
+/* =========================================
+   ESTADO VACÍO
+   ========================================= */
+
+.sedes-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.sedes-empty-icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 17px;
+    border-radius: 22px;
+    background: var(--sedes-surface-alt);
+    color: var(--sedes-primary);
+    font-size: 31px;
+}
+
+.sedes-empty h3 {
+    margin: 0 0 10px;
+    color: var(--sedes-heading);
+    font-size: 16px;
+}
+
+.sedes-empty p {
+    max-width: 310px;
+    margin: 0;
+    color: var(--sedes-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   BOTONES DE ACCIONES
+   ========================================= */
+
+.sedes-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.sedes-actions form {
+    margin: 0;
+}
+
+.sedes-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 8px 12px;
+    border: 1px solid var(--sedes-border);
+    border-radius: 8px;
+    background: var(--sedes-surface);
+    color: var(--sedes-text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.sedes-action-btn:hover {
+    background: var(--sedes-surface-hover);
+    border-color: var(--sedes-muted);
+    color: var(--sedes-heading);
+}
+
+.sedes-action-delete {
+    color: var(--sedes-danger);
+    border-color: var(--sedes-danger-border);
+}
+
+.sedes-action-delete:hover {
+    background: var(--sedes-danger-soft);
+    border-color: var(--sedes-danger);
+    color: var(--sedes-danger);
+}
+
+.sedes-cancel-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--sedes-muted);
+    text-decoration: underline;
+}
+
+.sedes-cancel-link:hover {
+    color: var(--sedes-primary);
+}
+
+/* =========================================
+   PIE DE PÁGINA
+   ========================================= */
+
+.sedes-footer {
+    padding: 25px 0 5px;
+    color: var(--sedes-muted);
+    font-size: 11px;
+    text-align: center;
+}
+
+/* =========================================
+   TABLETAS
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .sedes-main {
+        padding: 24px;
+    }
+
+    .sedes-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sedes-stats {
+        gap: 12px;
+    }
+
+    .sedes-stat-card {
+        padding: 16px;
+    }
+}
+
+/* =========================================
+   MÓVILES
+   ========================================= */
+
+@media (max-width: 768px) {
+    .sedes-layout {
+        margin-left: 0;
+    }
+
+    .sedes-main {
+        padding: 18px;
+    }
+
+    .sedes-header {
+        gap: 12px;
+    }
+
+    .sedes-header-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 15px;
+        font-size: 25px;
+    }
+
+    .sedes-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sedes-stat-card {
+        padding: 16px;
+    }
+
+    .sedes-form-panel,
+    .sedes-list-panel {
+        padding: 18px;
+    }
+
+    .sedes-actions {
+        min-width: 130px;
+    }
+
+    .sedes-table th,
+    .sedes-table td {
+        padding: 12px 10px;
+    }
+}
+
+/* =========================================
+   MÓVILES PEQUEÑOS
+   ========================================= */
+
+@media (max-width: 420px) {
+    .sedes-main {
+        padding: 14px;
+    }
+
+    .sedes-header h1 {
+        font-size: 25px;
+    }
+
+    .sedes-section-heading h2 {
+        font-size: 16px;
+    }
+
+    .sedes-header-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 22px;
+    }
+}
