@@ -204,6 +204,66 @@ textarea {
 }
 
 
+/* ===== ESTADO DE MEDICAMENTOS ===== */
+
+.estado-medicamento {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.estado-activo {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.estado-inactivo {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+/* Fila de medicamento inactivo */
+tr.medicamento-inactivo {
+    background: #FFF1F2;
+    color: #991B1B;
+}
+
+tr.medicamento-inactivo td {
+    border-color: #FECACA;
+}
+
+/* Botón inactivar */
+.btn-inactivar {
+    background: #DC2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-inactivar:hover {
+    background: #B91C1C;
+}
+
+/* Botón reactivar */
+.btn-reactivar {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-reactivar:hover {
+    background: #047857;
+}
+
+
 /* ===== DISEÑO RESPONSIVO ===== */
 @media (max-width: 700px) {
     .container {

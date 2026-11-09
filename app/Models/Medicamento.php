@@ -10,7 +10,7 @@ class Medicamento extends Model
 
     protected $primaryKey = 'idMedicamento';
 
-    protected $fillable = [
+     protected $fillable = [
         'nombre',
         'categoria',
         'descripcion',
@@ -18,6 +18,11 @@ class Medicamento extends Model
         'stock',
         'stockMinimo',
         'valor',
-        'idSede'
+        'idSede',
+        'estado'
+    ];
+
+    protected $casts = [
+        'estado' => 'boolean',
     ];
 }

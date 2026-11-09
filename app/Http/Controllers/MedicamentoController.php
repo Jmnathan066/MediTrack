@@ -67,24 +67,29 @@ class MedicamentoController extends Controller
         return view('medicamentos.eliminar', compact('medicamento'));
     }
 
+    
     public function eliminarMedicamento(Request $request, $id)
     {
         $datos = $request->validate([
             'confirmacion' => 'required|string',
         ]);
 
-        $eliminado = $this->inventario->eliminarConConfirmacion(
+        $estado = $this->inventario->eliminarConConfirmacion(
             (int) $id,
             $datos['confirmacion']
         );
 
-        if (! $eliminado) {
+        if ($estado === null) {
             return back()->withErrors([
                 'confirmacion' => 'El ID ingresado no coincide.',
             ]);
         }
 
-        return redirect('/medicamentos')
-            ->with('success', 'Medicamento eliminado correctamente.');
+        $mensaje = $estado
+            ? 'Medicamento reactivado correctamente.'
+            : 'Medicamento inactivado correctamente.';
+
+        return redirect('/medicamentos')->with('success', $mensaje);
     }
+
 }

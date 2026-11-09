@@ -57,13 +57,22 @@ class InventarioService
     }
 
     /**
-     * Lista exclusivamente los medicamentos de la sede actual.
+     * Lista los medicamentos de la sede actual.
+     *
+     * Administrador: visualiza activos e inactivos.
+     * Empresa, doctor y paciente: visualizan únicamente activos.
      */
     public function listar(?string $busqueda = null)
     {
         $idSede = $this->sedeActualId();
+        $rol = session('tipoUsuario');
 
         $query = Medicamento::where('idSede', $idSede);
+
+        // Los demás roles no pueden visualizar medicamentos inactivos.
+        if ($rol !== 'admin') {
+            $query->where('estado', true);
+        }
 
         if ($busqueda !== null && trim($busqueda) !== '') {
             $termino = trim($busqueda);
@@ -74,7 +83,10 @@ class InventarioService
 
                 // El ID se busca como número exacto.
                 if (ctype_digit($termino)) {
-                    $subquery->orWhere('idMedicamento', (int) $termino);
+                    $subquery->orWhere(
+                        'idMedicamento',
+                        (int) $termino
+                    );
                 }
             });
         }
@@ -94,7 +106,7 @@ class InventarioService
 
     /**
      * Crea el medicamento asignándolo a la sede actual.
-     * El ID de sede no se toma de los datos enviados por el formulario.
+     * Todo medicamento nuevo se registra como activo.
      */
     public function crear(array $datos): Medicamento
     {
@@ -107,6 +119,7 @@ class InventarioService
             'stockMinimo' => $datos['stockMinimo'],
             'valor' => $datos['valor'],
             'idSede' => $this->sedeActualId(),
+            'estado' => true,
         ];
 
         return Medicamento::create($datosPermitidos);
@@ -133,21 +146,30 @@ class InventarioService
     }
 
     /**
-     * Elimina un medicamento de la sede actual tras confirmar su ID.
+     * Inactiva o reactiva un medicamento después de confirmar su ID.
+     *
+     * true: el medicamento queda activo.
+     * false: el medicamento queda inactivo.
+     * null: el ID de confirmación no coincide.
+     *
+     * No elimina físicamente el registro de la base de datos.
      */
     public function eliminarConConfirmacion(
         int $id,
         string $confirmacion
-    ): bool {
+    ): ?bool {
         $medicamento = $this->obtener($id);
 
         if ($confirmacion !== (string) $medicamento->idMedicamento) {
-            return false;
+            return null;
         }
 
-        $medicamento->delete();
+        // Invierte el estado actual.
+        $medicamento->estado = ! $medicamento->estado;
 
-        return true;
+        $medicamento->save();
+
+        return $medicamento->estado;
     }
 
     /**

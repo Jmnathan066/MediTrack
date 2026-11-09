@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Medicamentos</title>
-     @vite([
+
+    @vite([
         'resources/css/partials.css',
         'resources/css/medic/medicamento.css',
         'resources/js/partials.js',
@@ -22,104 +24,122 @@
 
         <form method="GET" action="/medicamentos" class="busqueda-form">
 
-        <input
-            type="text"
-            name="busqueda"
-            placeholder="Buscar por ID, nombre o categoría"
-            value="{{ $busqueda ?? '' }}">
+            <input
+                type="text"
+                name="busqueda"
+                placeholder="Buscar por ID, nombre o categoría"
+                value="{{ $busqueda ?? '' }}">
 
-        <button type="submit">
-            Buscar
-        </button>
+            <button type="submit">
+                Buscar
+            </button>
 
-    </form>
+        </form>
 
-    <br>
-        
-@if(in_array(session('tipoUsuario'), ['admin', 'entidad']))
-    <button onclick="window.location.href='/medicamentos/crear'">
-        Registrar Medicamento
-    </button>
-@endif
+        <br>
 
-<br><br>
+        @if(in_array(session('tipoUsuario'), ['admin', 'entidad']))
+            <button onclick="window.location.href='/medicamentos/crear'">
+                Registrar Medicamento
+            </button>
+        @endif
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Categoría</th>
-        <th>Stock</th>
-        <th>Valor</th>
-        <th>Acciones</th>
-    </tr>
+        <br><br>
 
-        @forelse($medicamentos as $medicamento)
-
+        <table border="1">
             <tr>
-                <td>{{ $medicamento->idMedicamento }}</td>
-                <td>{{ $medicamento->nombre }}</td>
-                <td>{{ $medicamento->categoria }}</td>
-                <td>{{ $medicamento->stock }}</td>
-                <td>${{ $medicamento->valor }}</td>
-
-                <td>
-                    <button onclick="toggleDetalle({{ $medicamento->idMedicamento }})">
-                        Ver
-                    </button>
-
-                    @if(in_array(session('tipoUsuario'), ['admin', 'entidad']))
-
-                    <button
-                        onclick="window.location.href='/medicamentos/editar/{{ $medicamento->idMedicamento }}'">
-                        Editar
-                    </button>
-                    @endif
-
-                    @if(in_array(session('tipoUsuario'), ['admin']))
-                    <button
-                        onclick="window.location.href='/medicamentos/eliminar/{{ $medicamento->idMedicamento }}'">
-                        Eliminar
-                    </button>
-                    @endif
-                
-                </td>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Stock</th>
+                <th>Valor</th>
+                <th>Estado</th>
+                <th>Acciones</th>
             </tr>
 
-            <tr id="detalle-{{ $medicamento->idMedicamento }}"
-                class="detalle hidden">
+            @forelse($medicamentos as $medicamento)
 
-                <td colspan="6">
+                <tr class="{{ !$medicamento->estado ? 'medicamento-inactivo' : '' }}">
 
-                    <strong>Descripción:</strong>
-                    {{ $medicamento->descripcion }}
+                    <td>{{ $medicamento->idMedicamento }}</td>
+                    <td>{{ $medicamento->nombre }}</td>
+                    <td>{{ $medicamento->categoria }}</td>
+                    <td>{{ $medicamento->stock }}</td>
+                    <td>${{ $medicamento->valor }}</td>
 
-                    <br><br>
+                    <td>
+                        @if($medicamento->estado)
+                            <span class="estado-medicamento estado-activo">
+                                Activo
+                            </span>
+                        @else
+                            <span class="estado-medicamento estado-inactivo">
+                                Inactivo
+                            </span>
+                        @endif
+                    </td>
 
-                    <strong>Fecha de vencimiento:</strong>
-                    {{ $medicamento->fechaVencimiento }}
+                    <td>
 
-                    <br><br>
+                        <button onclick="toggleDetalle({{ $medicamento->idMedicamento }})">
+                            Ver
+                        </button>
 
-                    <strong>Stock mínimo:</strong>
-                    {{ $medicamento->stockMinimo }}
+                        @if(in_array(session('tipoUsuario'), ['admin', 'entidad']))
+                            <button
+                                onclick="window.location.href='/medicamentos/editar/{{ $medicamento->idMedicamento }}'">
+                                Editar
+                            </button>
+                        @endif
 
-                </td>
+                        @if(session('tipoUsuario') === 'admin')
 
-            </tr>
+                            <button
+                                class="{{ $medicamento->estado ? 'btn-inactivar' : 'btn-reactivar' }}"
+                                onclick="window.location.href='/medicamentos/eliminar/{{ $medicamento->idMedicamento }}'">
+
+                                {{ $medicamento->estado ? 'Inactivar' : 'Reactivar' }}
+
+                            </button>
+
+                        @endif
+
+                    </td>
+                </tr>
+
+                <tr id="detalle-{{ $medicamento->idMedicamento }}"
+                    class="detalle hidden {{ !$medicamento->estado ? 'medicamento-inactivo' : '' }}">
+
+                    <td colspan="7">
+
+                        <strong>Descripción:</strong>
+                        {{ $medicamento->descripcion }}
+
+                        <br><br>
+
+                        <strong>Fecha de vencimiento:</strong>
+                        {{ $medicamento->fechaVencimiento }}
+
+                        <br><br>
+
+                        <strong>Stock mínimo:</strong>
+                        {{ $medicamento->stockMinimo }}
+
+                    </td>
+
+                </tr>
 
             @empty
 
-            <tr>
-                <td colspan="6">
-                    No existen medicamentos registrados.
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="7">
+                        No existen medicamentos registrados.
+                    </td>
+                </tr>
 
-    @endforelse
+            @endforelse
 
-</table>
-
+        </table>
 
     </div>
 
