@@ -45,23 +45,97 @@
     </a>
 
     
-    <?php if(in_array(session('tipoUsuario'), ['admin', 'entidad'])): ?>
+    <?php if(session('tipoUsuario') === 'paciente'): ?>
+        <a href="<?php echo e(route('paciente.reclamos.index')); ?>" class="menu-item">
+            <span class="menu-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3 3 20h18L12 3Z"/>
+                    <path d="M12 9v5"/>
+                    <path d="M12 17h.01"/>
+                </svg>
+            </span>
+            <span class="menu-text">Mis reclamos</span>
+        </a>
+    <?php endif; ?>
+
+    
+    <?php if(in_array(session('tipoUsuario'), ['admin', 'entidad', 'doctor'])): ?>
+
         <div class="sidebar-section">
             <span class="section-title">GESTIÓN MÉDICA</span>
         </div>
 
-        <a href="<?php echo e(route('pacientes.index')); ?>" class="menu-item">
-            <span class="menu-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="10.5" cy="10.5" r="6.5"/>
-                    <path d="m16 16 5 5"/>
-                    <path d="M10.5 7v7M7 10.5h7"/>
-                </svg>
-            </span>
-            <span class="menu-text">Consulta de pacientes</span>
-        </a>
+        
+        <?php if(in_array(session('tipoUsuario'), ['admin', 'entidad'])): ?>
+            <a href="<?php echo e(route('pacientes.index')); ?>" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"/>
+                        <path d="m16 16 5 5"/>
+                        <path d="M10.5 7v7M7 10.5h7"/>
+                    </svg>
+                </span>
+                <span class="menu-text">Consulta de pacientes</span>
+            </a>
+        <?php endif; ?>
+
+        
+        <?php if(session('tipoUsuario') === 'entidad'): ?>
+            <a href="<?php echo e(route('empresa.formulas.index')); ?>" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                        <path d="M14 2v6h6"/>
+                        <path d="m8 15 2.5 2.5L16 12"/>
+                    </svg>
+                </span>
+                <span class="menu-text">Consultar fórmulas</span>
+            </a>
+
+            
+            <a href="<?php echo e(route('empresa.ordenes.index')); ?>" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="17" rx="2"/>
+                        <path d="M8 2v4M16 2v4M3 10h18"/>
+                        <path d="m8 15 2 2 5-5"/>
+                    </svg>
+                </span>
+                <span class="menu-text">Órdenes de entrega</span>
+            </a>
+        <?php endif; ?>
+
+        
+        <?php if(in_array(session('tipoUsuario'), ['doctor', 'admin'])): ?>
+            <a href="<?php echo e(route('doctor.pacientes')); ?>" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"/>
+                        <path d="m16 16 5 5"/>
+                        <path d="M10.5 7v7M7 10.5h7"/>
+                    </svg>
+                </span>
+                <span class="menu-text">Consulta médica</span>
+            </a>
+        <?php endif; ?>
+
+        
+        <?php if(session('tipoUsuario') === 'doctor'): ?>
+            <a href="<?php echo e(route('doctor.formulas')); ?>" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                        <path d="M14 2v6h6"/>
+                        <path d="M8 13h8M8 17h8"/>
+                    </svg>
+                </span>
+                <span class="menu-text">Fórmulas médicas</span>
+            </a>
+        <?php endif; ?>
+
     <?php endif; ?>
 
+    
     <div class="menu-group">
         <div class="menu-title" onclick="toggleMedicamentos()">
             <span class="menu-icon">
@@ -84,10 +158,12 @@
 
     
     <?php if(session('tipoUsuario') === 'admin'): ?>
+
         <div class="sidebar-section">
             <span class="section-title">ADMINISTRACIÓN</span>
         </div>
 
+        
         <a href="<?php echo e(route('usuarios.index')); ?>" class="menu-item">
             <span class="menu-icon">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -100,6 +176,7 @@
             <span class="menu-text">Gestión de usuarios</span>
         </a>
 
+        
         <a href="<?php echo e(route('sedes.index')); ?>" class="menu-item">
             <span class="menu-icon">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -112,6 +189,21 @@
             <span class="menu-text">Gestión de sedes</span>
         </a>
 
+        
+        <a href="<?php echo e(route('eps.index')); ?>" class="menu-item">
+            <span class="menu-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 21h18"/>
+                    <path d="M5 21V7l7-4 7 4v14"/>
+                    <path d="M9 21v-5h6v5"/>
+                    <path d="M9 10h.01M15 10h.01"/>
+                    <path d="M12 8v4M10 10h4"/>
+                </svg>
+            </span>
+            <span class="menu-text">Gestión de EPS</span>
+        </a>
+
+        
         <a href="<?php echo e(route('administradores.crear')); ?>" class="menu-item">
             <span class="menu-icon">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -122,8 +214,8 @@
             </span>
             <span class="menu-text">Crear personal</span>
         </a>
+
     <?php endif; ?>
 
 </div>
-
 <?php /**PATH C:\Users\davim\medicine\resources\views/partials/sidebar.blade.php ENDPATH**/ ?>

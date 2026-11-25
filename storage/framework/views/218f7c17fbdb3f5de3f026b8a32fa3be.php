@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,10 +8,10 @@
     <title>Crear usuario | MediTrack EPS</title>
 
     <?php echo app('Illuminate\Foundation\Vite')([
-    'resources/css/partials.css',
-    'resources/css/administradores.css',
-    'resources/js/partials.js',
-    'resources/js/administradores.js'
+        'resources/css/partials.css',
+        'resources/css/administradores.css',
+        'resources/js/partials.js',
+        'resources/js/administradores.js'
     ]); ?>
 </head>
 
@@ -143,6 +144,7 @@
                             >
                         </div>
 
+                        
                         <div class="admin-field">
                             <label for="apellido">Apellido</label>
                             <input
@@ -172,6 +174,7 @@
                             >
                         </div>
 
+                        
                         <div class="admin-field">
                             <label for="documento">Documento</label>
                             <input
@@ -200,6 +203,7 @@
                             >
                         </div>
 
+                        
                         <div class="admin-field">
                             <label for="empresa">Empresa (opcional)</label>
                             <input
@@ -211,6 +215,46 @@
                                 placeholder="Nombre de la empresa"
                                 autocomplete="organization"
                             >
+                        </div>
+
+                        
+                        <div
+                            class="admin-field eps-field"
+                            id="epsField"
+                            <?php echo e(!$esDoctor ? 'hidden' : ''); ?>
+
+                        >
+                            <label for="idEPS">EPS del doctor</label>
+
+                            <select
+                                id="idEPS"
+                                name="idEPS"
+                                <?php echo e($esDoctor ? 'required' : 'disabled'); ?>
+
+                            >
+                                <option value="">Selecciona una EPS</option>
+
+                                <?php $__currentLoopData = $eps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option
+                                        value="<?php echo e($item->idEPS); ?>"
+                                        <?php echo e((string) old('idEPS') === (string) $item->idEPS ? 'selected' : ''); ?>
+
+                                    >
+                                        <?php echo e($item->nombre); ?>
+
+                                    </option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+
+                            <?php if($eps->isEmpty()): ?>
+                                <small>
+                                    No hay EPS activas disponibles. Primero debes registrar o activar una EPS.
+                                </small>
+                            <?php else: ?>
+                                <small>
+                                    Selecciona la EPS a la que estará asociado este doctor.
+                                </small>
+                            <?php endif; ?>
                         </div>
 
                         
@@ -244,10 +288,12 @@
                             </small>
                         </div>
 
+                        
                         <div class="admin-field password-confirmation-field">
                             <label for="password_confirmation">
                                 Repetir contraseña
                             </label>
+
                             <input
                                 id="password_confirmation"
                                 type="password"

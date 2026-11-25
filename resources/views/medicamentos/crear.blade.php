@@ -30,18 +30,33 @@
                 </div>
             @endif
 
-            <form action="{{ route('medicamentos.guardar') }}" method="POST">
+            <form
+                action="{{ route('medicamentos.guardar') }}"
+                method="POST"
+                id="form-medicamento"
+                data-url-deteccion="{{ route('medicamentos.detectar') }}"
+            >
                 @csrf
+
+                <h2>Información del medicamento</h2>
 
                 <label for="nombre">Nombre</label>
                 <input
                     type="text"
                     id="nombre"
                     name="nombre"
-                    placeholder="Ej. Acetaminofén"
+                    placeholder="Ej. Acetaminofén 500mg"
                     value="{{ old('nombre') }}"
+                    autocomplete="off"
                     required
                 >
+
+                <div
+                    id="mensaje-deteccion"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
 
                 <label for="categoria">Categoría</label>
                 <input
@@ -58,38 +73,8 @@
                     id="descripcion"
                     name="descripcion"
                     placeholder="Describe el medicamento, su uso o sus características..."
+                    required
                 >{{ old('descripcion') }}</textarea>
-
-                <label for="fechaVencimiento">Fecha de vencimiento</label>
-                <input
-                    type="date"
-                    id="fechaVencimiento"
-                    name="fechaVencimiento"
-                    value="{{ old('fechaVencimiento') }}"
-                    required
-                >
-
-                <label for="stock">Stock</label>
-                <input
-                    type="number"
-                    id="stock"
-                    name="stock"
-                    placeholder="Ej. 100"
-                    value="{{ old('stock') }}"
-                    min="0"
-                    required
-                >
-
-                <label for="stockMinimo">Stock mínimo</label>
-                <input
-                    type="number"
-                    id="stockMinimo"
-                    name="stockMinimo"
-                    placeholder="Ej. 10"
-                    value="{{ old('stockMinimo') }}"
-                    min="0"
-                    required
-                >
 
                 <label for="valor">Valor</label>
                 <input
@@ -103,8 +88,62 @@
                     required
                 >
 
+                <hr>
+
+                <h2>Información del lote</h2>
+
+                <label for="codigoLote">Código del lote</label>
+                <input
+                    type="text"
+                    id="codigoLote"
+                    name="codigoLote"
+                    placeholder="Ej. LOT-2026-001"
+                    value="{{ old('codigoLote') }}"
+                    required
+                >
+
+                <label for="fechaIngreso">Fecha de ingreso</label>
+                <input
+                    type="date"
+                    id="fechaIngreso"
+                    name="fechaIngreso"
+                    value="{{ old('fechaIngreso', date('Y-m-d')) }}"
+                    required
+                >
+
+                <label for="fechaVencimiento">Fecha de vencimiento</label>
+                <input
+                    type="date"
+                    id="fechaVencimiento"
+                    name="fechaVencimiento"
+                    value="{{ old('fechaVencimiento') }}"
+                    required
+                >
+
+                <label for="cantidad">Cantidad recibida</label>
+                <input
+                    type="number"
+                    id="cantidad"
+                    name="cantidad"
+                    placeholder="Ej. 100"
+                    value="{{ old('cantidad') }}"
+                    min="0"
+                    required
+                >
+
+                <label for="stockMinimo">Stock mínimo</label>
+                <input
+                    type="number"
+                    id="stockMinimo"
+                    name="stockMinimo"
+                    placeholder="Ej. 10"
+                    value="{{ old('stockMinimo', 10) }}"
+                    min="0"
+                    required
+                >
+
                 <div class="acciones">
-                    <button type="submit">Guardar</button>
+                    <button type="submit">Guardar medicamento</button>
 
                     <button
                         type="button"
@@ -113,6 +152,7 @@
                         Volver
                     </button>
                 </div>
+
             </form>
 
         </div>

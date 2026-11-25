@@ -1,0 +1,565 @@
+
+/* =========================================
+   MEDITrack EPS - GESTIÓN DE EPS
+   Compatible con html.dark-mode
+   ========================================= */
+
+/* =========================================
+   VARIABLES Y CONTENEDOR PRINCIPAL
+   ========================================= */
+
+.eps-layout {
+    --eps-bg: #f4f7fb;
+    --eps-surface: #ffffff;
+    --eps-surface-alt: #f8fafc;
+    --eps-surface-hover: #f0f5f9;
+
+    --eps-text: #243247;
+    --eps-heading: #17324d;
+    --eps-muted: #718096;
+
+    --eps-border: #e2e8f0;
+    --eps-input-bg: #fbfcfe;
+    --eps-input-border: #dce4ed;
+
+    --eps-primary: #118b84;
+    --eps-primary-hover: #0c716c;
+    --eps-primary-soft: #e0f5f2;
+
+    --eps-blue-soft: #edf2ff;
+    --eps-blue: #4265b2;
+
+    --eps-green-soft: #e1f7eb;
+    --eps-green: #188451;
+
+    --eps-orange-soft: #fff0df;
+    --eps-orange: #b66b19;
+
+    --eps-danger-soft: #fff0f0;
+    --eps-danger: #a52d35;
+    --eps-danger-border: #f1c7c7;
+
+    --eps-success-soft: #eaf9f0;
+    --eps-success: #176b43;
+    --eps-success-border: #bcebd0;
+
+    --eps-shadow: 0 5px 20px rgba(29, 52, 77, 0.045);
+
+    margin-left: 250px;
+    min-height: 100vh;
+    padding: 32px;
+    background: var(--eps-bg);
+    color: var(--eps-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+    box-sizing: border-box;
+}
+
+.eps-layout *,
+.eps-layout *::before,
+.eps-layout *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   MODO OSCURO
+   ========================================= */
+
+html.dark-mode .eps-layout {
+    --eps-bg: #111827;
+    --eps-surface: #1f2937;
+    --eps-surface-alt: #273449;
+    --eps-surface-hover: #334155;
+
+    --eps-text: #e5e7eb;
+    --eps-heading: #f1f5f9;
+    --eps-muted: #a6b2c3;
+
+    --eps-border: #374151;
+    --eps-input-bg: #182230;
+    --eps-input-border: #465367;
+
+    --eps-primary: #2ac4b8;
+    --eps-primary-hover: #20a69d;
+    --eps-primary-soft: #153b3b;
+
+    --eps-blue-soft: #263858;
+    --eps-blue: #a8c1ff;
+
+    --eps-green-soft: #173b2d;
+    --eps-green: #83e0ac;
+
+    --eps-orange-soft: #453321;
+    --eps-orange: #ffc27a;
+
+    --eps-danger-soft: #442629;
+    --eps-danger: #ffadb3;
+    --eps-danger-border: #744047;
+
+    --eps-success-soft: #173b2d;
+    --eps-success: #91e4b4;
+    --eps-success-border: #285b43;
+
+    --eps-shadow: 0 5px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+.eps-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.eps-header h1 {
+    margin: 8px 0;
+    color: var(--eps-heading);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 750;
+}
+
+.eps-header p {
+    margin: 0;
+    color: var(--eps-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   TARJETAS DE ESTADÍSTICAS
+   ========================================= */
+
+.eps-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.eps-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 22px;
+    background: var(--eps-surface);
+    color: var(--eps-text);
+    border: 1px solid var(--eps-border);
+    border-radius: 15px;
+    box-shadow: var(--eps-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.eps-stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.eps-stat-info span {
+    color: var(--eps-muted);
+    font-size: 13px;
+}
+
+.eps-stat-info h2 {
+    margin: 0;
+    color: var(--eps-heading);
+    font-size: 27px;
+    line-height: 1;
+}
+
+/* =========================================
+   PANELES PRINCIPALES
+   ========================================= */
+
+.eps-content {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.5fr);
+    align-items: start;
+    gap: 22px;
+}
+
+.eps-form-container,
+.eps-table-container {
+    min-width: 0;
+    padding: 25px;
+    background: var(--eps-surface);
+    color: var(--eps-text);
+    border: 1px solid var(--eps-border);
+    border-radius: 17px;
+    box-shadow: var(--eps-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.eps-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.eps-section-header h2 {
+    margin: 0;
+    color: var(--eps-heading);
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.eps-section-header p {
+    margin: 0;
+    color: var(--eps-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
+
+.eps-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.eps-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.eps-form-group label {
+    color: var(--eps-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.eps-form-group input {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid var(--eps-input-border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--eps-input-bg);
+    color: var(--eps-text);
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.eps-form-group input::placeholder {
+    color: var(--eps-muted);
+    opacity: 0.8;
+}
+
+.eps-form-group input:focus {
+    border-color: var(--eps-primary);
+    box-shadow: 0 0 0 3px rgba(21, 155, 146, 0.16);
+    background: var(--eps-surface);
+}
+
+/* =========================================
+   BOTONES DEL FORMULARIO
+   ========================================= */
+
+.eps-form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.eps-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.eps-btn-primary {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    background: var(--eps-primary);
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.eps-btn-primary:hover {
+    background: var(--eps-primary-hover);
+    transform: translateY(-1px);
+}
+
+.eps-btn-secondary {
+    width: 100%;
+    background: var(--eps-surface-alt);
+    border-color: var(--eps-border);
+    color: var(--eps-text);
+}
+
+.eps-btn-secondary:hover {
+    background: var(--eps-surface-hover);
+}
+
+/* =========================================
+   TABLA DE EPS
+   ========================================= */
+
+.eps-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 9px;
+}
+
+.eps-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: var(--eps-surface);
+    color: var(--eps-text);
+}
+
+.eps-table th {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--eps-border);
+    background: var(--eps-surface-alt);
+    color: var(--eps-muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.eps-table td {
+    padding: 17px 12px;
+    border-bottom: 1px solid var(--eps-border);
+    color: var(--eps-text);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.eps-table tbody tr {
+    background: var(--eps-surface);
+    transition: background-color 0.2s;
+}
+
+.eps-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.eps-table tbody tr:hover {
+    background: var(--eps-surface-hover);
+}
+
+/* =========================================
+   ESTADOS
+   ========================================= */
+
+.status-active,
+.status-inactive {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-active {
+    background: var(--eps-green-soft);
+    color: var(--eps-green);
+}
+
+.status-inactive {
+    background: var(--eps-orange-soft);
+    color: var(--eps-orange);
+}
+
+/* =========================================
+   ALERTAS
+   ========================================= */
+
+.eps-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 15px 18px;
+    border-radius: 11px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.eps-alert-success {
+    border: 1px solid var(--eps-success-border);
+    background: var(--eps-success-soft);
+    color: var(--eps-success);
+}
+
+.eps-alert-error {
+    border: 1px solid var(--eps-danger-border);
+    background: var(--eps-danger-soft);
+    color: var(--eps-danger);
+}
+
+.eps-alert ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* =========================================
+   ESTADO VACÍO
+   ========================================= */
+
+.eps-empty {
+    padding: 45px 20px !important;
+    color: var(--eps-muted) !important;
+    text-align: center;
+    font-size: 13px !important;
+}
+
+/* =========================================
+   BOTONES DE ACCIONES
+   ========================================= */
+
+.eps-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.eps-actions form {
+    margin: 0;
+}
+
+.eps-btn-edit {
+    background: var(--eps-blue-soft);
+    color: var(--eps-blue);
+}
+
+.eps-btn-edit:hover {
+    filter: brightness(0.96);
+}
+
+.eps-btn-danger {
+    background: var(--eps-danger-soft);
+    border-color: var(--eps-danger-border);
+    color: var(--eps-danger);
+}
+
+.eps-btn-danger:hover {
+    border-color: var(--eps-danger);
+}
+
+.eps-btn-success {
+    background: var(--eps-success-soft);
+    border-color: var(--eps-success-border);
+    color: var(--eps-success);
+}
+
+.eps-btn-success:hover {
+    border-color: var(--eps-success);
+}
+
+/* =========================================
+   ACCESIBILIDAD
+   ========================================= */
+
+.eps-btn:focus-visible {
+    outline: 3px solid var(--eps-primary);
+    outline-offset: 3px;
+}
+
+/* =========================================
+   TABLETAS
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .eps-layout {
+        padding: 24px;
+    }
+
+    .eps-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .eps-stats {
+        gap: 12px;
+    }
+
+    .eps-stat-card {
+        padding: 16px;
+    }
+}
+
+/* =========================================
+   MÓVILES
+   ========================================= */
+
+@media (max-width: 768px) {
+    .eps-layout {
+        margin-left: 0;
+        padding: 18px;
+    }
+
+    .eps-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .eps-stat-card {
+        padding: 16px;
+    }
+
+    .eps-form-container,
+    .eps-table-container {
+        padding: 18px;
+    }
+
+    .eps-actions {
+        min-width: 130px;
+    }
+
+    .eps-table th,
+    .eps-table td {
+        padding: 12px 10px;
+    }
+}
+
+/* =========================================
+   MÓVILES PEQUEÑOS
+   ========================================= */
+
+@media (max-width: 420px) {
+    .eps-layout {
+        padding: 14px;
+    }
+
+    .eps-header h1 {
+        font-size: 25px;
+    }
+
+    .eps-section-header h2 {
+        font-size: 16px;
+    }
+}

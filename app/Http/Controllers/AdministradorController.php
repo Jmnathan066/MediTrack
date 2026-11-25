@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Eps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -11,7 +12,12 @@ class AdministradorController extends Controller
 {
     public function crear()
     {
-        return view('administradores.crear');
+        // Solo se muestran EPS activas para asignarlas a los doctores.
+        $eps = Eps::where('estado', true)
+            ->orderBy('nombre')
+            ->get();
+
+        return view('administradores.crear', compact('eps'));
     }
 
     public function guardar(Request $request)
@@ -45,6 +51,14 @@ class AdministradorController extends Controller
 
             'direccion' => 'required|string|max:255',
             'empresa' => 'nullable|string|max:255',
+
+            // La EPS es obligatoria únicamente para los doctores.
+            'idEPS' => [
+                'required_if:tipoUsuario,doctor',
+                'nullable',
+                Rule::exists('eps', 'idEPS')
+                    ->where('estado', true),
+            ],
 
             'password' => [
                 'required',
@@ -87,6 +101,12 @@ class AdministradorController extends Controller
             'direccion.required' =>
                 'La dirección es obligatoria.',
 
+            'idEPS.required_if' =>
+                'Debes seleccionar una EPS para el doctor.',
+
+            'idEPS.exists' =>
+                'La EPS seleccionada no existe o está inactiva.',
+
             'password.min' =>
                 'La contraseña debe tener mínimo 6 caracteres.',
 
@@ -98,6 +118,7 @@ class AdministradorController extends Controller
         ]);
 
         $usuario = DB::transaction(function () use ($datos) {
+
             $usuario = User::create([
                 'nombre' => $datos['nombre'],
                 'apellido' => $datos['apellido'],
@@ -107,8 +128,12 @@ class AdministradorController extends Controller
                 'direccion' => $datos['direccion'],
                 'empresa' => $datos['empresa'] ?? null,
 
-                // El servidor acepta únicamente admin o doctor.
                 'tipoUsuario' => $datos['tipoUsuario'],
+
+                // Solo los doctores reciben una EPS.
+                'idEPS' => $datos['tipoUsuario'] === 'doctor'
+                    ? $datos['idEPS']
+                    : null,
 
                 'estado' => true,
                 'password' => $datos['password'],

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Medicamento | MediTrack EPS</title>
+    <title>Cambiar estado del medicamento | MediTrack EPS</title>
 
     <?php echo app('Illuminate\Foundation\Vite')([
         'resources/css/partials.css',
@@ -16,12 +16,20 @@
 
     <?php echo $__env->make('partials.topbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
+    <?php
+        $inventario = $medicamento->inventarios->first();
+        $estadoActivo = $inventario ? $inventario->estado : false;
+        $accion = $estadoActivo ? 'Inactivar' : 'Reactivar';
+    ?>
+
     <div class="main-content medicamento-main">
         <div class="container">
 
-            <h1>Eliminar Medicamento</h1>
+            <h1><?php echo e($accion); ?> medicamento</h1>
 
-            <p>Está a punto de eliminar:</p>
+            <p>
+                Está a punto de <?php echo e(strtolower($accion)); ?> el siguiente medicamento:
+            </p>
 
             <p>
                 <strong><?php echo e($medicamento->nombre); ?></strong>
@@ -32,7 +40,9 @@
                 <strong><?php echo e($medicamento->idMedicamento); ?></strong>
             </p>
 
-            <p>Para confirmar, escriba el ID del medicamento.</p>
+            <p>
+                Para confirmar, escriba el ID del medicamento.
+            </p>
 
             <?php if($errors->any()): ?>
                 <div class="error">
@@ -57,12 +67,15 @@
                     required>
 
                 <div class="acciones">
-                    <button type="button"
-                            onclick="window.location.href='/medicamentos'">
+                    <button
+                        type="button"
+                        onclick="window.location.href='/medicamentos'">
                         Cancelar
                     </button>
 
-                    <button type="submit">Eliminar</button>
+                    <button type="submit">
+                        <?php echo e($accion); ?> medicamento
+                    </button>
                 </div>
             </form>
 

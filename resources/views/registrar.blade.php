@@ -34,7 +34,7 @@
             <p>Completa tus datos para comenzar.</p>
         </header>
 
-
+        {{-- Errores generales --}}
         @if(session('error'))
             <div class="alerta-error" role="alert">
                 <span class="alert-icon">!</span>
@@ -42,6 +42,7 @@
             </div>
         @endif
 
+        {{-- Éxito --}}
         @if(session('success'))
             <div class="alerta-success" role="status">
                 <span class="alert-icon">✓</span>
@@ -49,6 +50,7 @@
             </div>
         @endif
 
+        {{-- Errores de validación --}}
         @if($errors->any())
             <div class="alerta-error" role="alert">
                 <span class="alert-icon">!</span>
@@ -63,7 +65,6 @@
             </div>
         @endif
 
-
         <form method="POST" action="/registrar" class="register-form">
             @csrf
 
@@ -77,6 +78,7 @@
 
             <div class="form-grid">
 
+                {{-- Nombre --}}
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input
@@ -93,6 +95,7 @@
                     @enderror
                 </div>
 
+                {{-- Apellido --}}
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
                     <input
@@ -109,6 +112,7 @@
                     @enderror
                 </div>
 
+                {{-- Correo --}}
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
                     <input
@@ -125,6 +129,7 @@
                     @enderror
                 </div>
 
+                {{-- Documento --}}
                 <div class="form-group">
                     <label for="documento">Documento de identidad</label>
                     <input
@@ -141,6 +146,7 @@
                     @enderror
                 </div>
 
+                {{-- Teléfono --}}
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input
@@ -157,6 +163,7 @@
                     @enderror
                 </div>
 
+                {{-- Dirección --}}
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
                     <input
@@ -175,7 +182,6 @@
 
             </div>
 
-
             <div class="form-section-title account-title">
                 <span class="section-number">2</span>
                 <div>
@@ -186,12 +192,13 @@
 
             <div class="form-grid">
 
+                {{-- Tipo de usuario --}}
                 <div class="form-group">
                     <label for="tipoUsuario">Tipo de usuario</label>
+
                     <select
                         name="tipoUsuario"
                         id="tipoUsuario"
-                        onchange="controlarEmpresa()"
                         required
                     >
                         <option value="">Selecciona una opción</option>
@@ -206,31 +213,64 @@
                             Entidad
                         </option>
                     </select>
+
                     @error('tipoUsuario')
                         <small class="field-error">{{ $message }}</small>
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="empresa">Empresa <span class="optional">(opcional)</span></label>
-                    <input
-                        type="text"
-                        id="empresa"
-                        name="empresa"
-                        placeholder="Nombre de la empresa"
-                        value="{{ old('empresa') }}"
-                        autocomplete="organization"
+                {{-- EPS: pacientes y entidades --}}
+                <div
+                    class="form-group"
+                    id="epsField"
+                    {{ !in_array(old('tipoUsuario'), ['paciente', 'entidad']) ? 'hidden' : '' }}
+                >
+                    <label for="idEPS">
+                        <span id="epsLabel">
+                            {{ old('tipoUsuario') === 'entidad'
+                                ? 'EPS a la que pertenece tu entidad'
+                                : 'EPS a la que perteneces' }}
+                        </span>
+                    </label>
+
+                    <select
+                        name="idEPS"
+                        id="idEPS"
+                        required
                     >
-                    @error('empresa')
+                        <option value="">Selecciona una EPS</option>
+
+                        @foreach($eps as $item)
+                            <option
+                                value="{{ $item->idEPS }}"
+                                {{ (string) old('idEPS') === (string) $item->idEPS ? 'selected' : '' }}
+                            >
+                                {{ $item->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    @error('idEPS')
                         <small class="field-error">{{ $message }}</small>
                     @enderror
-                    <small class="field-hint" id="empresaHint">
-                        Si perteneces a una entidad, puedes indicarla aquí.
-                    </small>
+
+                    @if($eps->isEmpty())
+                        <small class="field-hint">
+                            Actualmente no hay EPS activas disponibles para el registro.
+                        </small>
+                    @else
+                        <small class="field-hint" id="epsHint">
+                            {{ old('tipoUsuario') === 'entidad'
+                                ? 'Selecciona la EPS a la que pertenece tu entidad.'
+                                : 'Selecciona la EPS a la que estás afiliado.' }}
+                        </small>
+                    @endif
                 </div>
 
+                {{-- Contraseña --}}
                 <div class="form-group full-width">
                     <label for="password">Contraseña</label>
+
                     <div class="password-wrapper">
                         <input
                             type="password"
@@ -258,6 +298,7 @@
                             </svg>
                         </button>
                     </div>
+
                     @error('password')
                         <small class="field-error">{{ $message }}</small>
                     @enderror
@@ -265,9 +306,10 @@
 
             </div>
 
-
+            {{-- Botón de registro --}}
             <button type="submit" class="register-button">
                 <span>Crear mi cuenta</span>
+
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12H19M12 5L19 12L12 19"
                           stroke="currentColor" stroke-width="2"
@@ -298,28 +340,70 @@
 
 </main>
 
-
 <script>
-function controlarEmpresa() {
-    const rol = document.getElementById('tipoUsuario').value;
-    const empresaInput = document.getElementById('empresa');
-    const empresaHint = document.getElementById('empresaHint');
-
-    if (rol === 'paciente') {
-        empresaInput.disabled = true;
-        empresaInput.value = '';
-        empresaInput.placeholder = 'No aplica para pacientes';
-        empresaHint.textContent = 'Este campo no aplica para pacientes.';
-    } else {
-        empresaInput.disabled = false;
-        empresaInput.placeholder = 'Nombre de la empresa';
-        empresaHint.textContent =
-            'Si perteneces a una entidad, puedes indicarla aquí.';
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
-    controlarEmpresa();
+
+    // --------------------------------------------------
+    // Elementos del formulario
+    // --------------------------------------------------
+
+    const tipoUsuario = document.getElementById('tipoUsuario');
+
+    const epsField = document.getElementById('epsField');
+    const epsSelect = document.getElementById('idEPS');
+    const epsLabel = document.getElementById('epsLabel');
+    const epsHint = document.getElementById('epsHint');
+
+    // --------------------------------------------------
+    // Control de EPS según el tipo de usuario
+    // --------------------------------------------------
+
+    function controlarCampos() {
+
+        const rol = tipoUsuario.value;
+
+        const esPaciente = rol === 'paciente';
+        const esEntidad = rol === 'entidad';
+        const necesitaEPS = esPaciente || esEntidad;
+
+        epsField.hidden = !necesitaEPS;
+        epsSelect.disabled = !necesitaEPS;
+        epsSelect.required = necesitaEPS;
+
+        if (esEntidad) {
+
+            epsLabel.textContent =
+                'EPS a la que pertenece tu entidad';
+
+            if (epsHint) {
+                epsHint.textContent =
+                    'Selecciona la EPS a la que pertenece tu entidad.';
+            }
+
+        } else {
+
+            epsLabel.textContent =
+                'EPS a la que perteneces';
+
+            if (epsHint) {
+                epsHint.textContent =
+                    'Selecciona la EPS a la que estás afiliado.';
+            }
+        }
+
+        if (!necesitaEPS) {
+            epsSelect.value = '';
+        }
+    }
+
+    tipoUsuario.addEventListener('change', controlarCampos);
+
+    // Inicializar según el valor recuperado por Laravel.
+    controlarCampos();
+
+    // --------------------------------------------------
+    // Mostrar / ocultar contraseña
+    // --------------------------------------------------
 
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
@@ -346,17 +430,24 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
 
     togglePassword.addEventListener('click', function () {
+
         const isPassword = passwordInput.type === 'password';
 
         passwordInput.type = isPassword ? 'text' : 'password';
+
         eyeIcon.innerHTML = isPassword ? eyeClosed : eyeOpen;
 
-        togglePassword.setAttribute('aria-pressed', String(isPassword));
+        togglePassword.setAttribute(
+            'aria-pressed',
+            String(isPassword)
+        );
+
         togglePassword.setAttribute(
             'aria-label',
             isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
         );
     });
+
 });
 </script>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,10 +8,10 @@
     <title>Crear usuario | MediTrack EPS</title>
 
     @vite([
-    'resources/css/partials.css',
-    'resources/css/administradores.css',
-    'resources/js/partials.js',
-    'resources/js/administradores.js'
+        'resources/css/partials.css',
+        'resources/css/administradores.css',
+        'resources/js/partials.js',
+        'resources/js/administradores.js'
     ])
 </head>
 
@@ -112,7 +113,7 @@
                 >
                     @csrf
 
-                    {{-- El servidor valida este valor --}}
+                    {{-- Tipo de usuario --}}
                     <input
                         type="hidden"
                         name="tipoUsuario"
@@ -122,7 +123,7 @@
 
                     <div class="admin-form-grid admin-create-grid">
 
-                        {{-- Fila 1 --}}
+                        {{-- Nombre --}}
                         <div class="admin-field">
                             <label for="nombre">Nombre</label>
                             <input
@@ -137,6 +138,7 @@
                             >
                         </div>
 
+                        {{-- Apellido --}}
                         <div class="admin-field">
                             <label for="apellido">Apellido</label>
                             <input
@@ -151,7 +153,7 @@
                             >
                         </div>
 
-                        {{-- Fila 2 --}}
+                        {{-- Correo --}}
                         <div class="admin-field">
                             <label for="email">Correo electrónico</label>
                             <input
@@ -166,6 +168,7 @@
                             >
                         </div>
 
+                        {{-- Documento --}}
                         <div class="admin-field">
                             <label for="documento">Documento</label>
                             <input
@@ -179,7 +182,7 @@
                             >
                         </div>
 
-                        {{-- Fila 3 --}}
+                        {{-- Teléfono --}}
                         <div class="admin-field">
                             <label for="telefono">Teléfono</label>
                             <input
@@ -194,6 +197,7 @@
                             >
                         </div>
 
+                        {{-- Empresa --}}
                         <div class="admin-field">
                             <label for="empresa">Empresa (opcional)</label>
                             <input
@@ -207,7 +211,43 @@
                             >
                         </div>
 
-                        {{-- Fila 4: Dirección a la izquierda --}}
+                        {{-- EPS: solamente para doctores --}}
+                        <div
+                            class="admin-field eps-field"
+                            id="epsField"
+                            {{ !$esDoctor ? 'hidden' : '' }}
+                        >
+                            <label for="idEPS">EPS del doctor</label>
+
+                            <select
+                                id="idEPS"
+                                name="idEPS"
+                                {{ $esDoctor ? 'required' : 'disabled' }}
+                            >
+                                <option value="">Selecciona una EPS</option>
+
+                                @foreach ($eps as $item)
+                                    <option
+                                        value="{{ $item->idEPS }}"
+                                        {{ (string) old('idEPS') === (string) $item->idEPS ? 'selected' : '' }}
+                                    >
+                                        {{ $item->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @if ($eps->isEmpty())
+                                <small>
+                                    No hay EPS activas disponibles. Primero debes registrar o activar una EPS.
+                                </small>
+                            @else
+                                <small>
+                                    Selecciona la EPS a la que estará asociado este doctor.
+                                </small>
+                            @endif
+                        </div>
+
+                        {{-- Dirección --}}
                         <div class="admin-field direccion-field">
                             <label for="direccion">Dirección</label>
                             <input
@@ -222,7 +262,7 @@
                             >
                         </div>
 
-                        {{-- Fila 5: Contraseñas --}}
+                        {{-- Contraseña --}}
                         <div class="admin-field password-field">
                             <label for="password">Contraseña</label>
                             <input
@@ -238,10 +278,12 @@
                             </small>
                         </div>
 
+                        {{-- Confirmar contraseña --}}
                         <div class="admin-field password-confirmation-field">
                             <label for="password_confirmation">
                                 Repetir contraseña
                             </label>
+
                             <input
                                 id="password_confirmation"
                                 type="password"

@@ -1,0 +1,1041 @@
+
+/* =========================================
+   MEDITrack EPS - FORMULAS MEDICAS
+   Compatible con html.dark-mode
+   ========================================= */
+
+/* VARIABLES Y CONTENEDOR */
+
+.formulas-content {
+    min-width: 0;
+}
+
+.formulas-page {
+    --f-surface: #ffffff;
+    --f-surface-alt: #f8fafc;
+    --f-hover: #f0f5f9;
+
+    --f-text: #243247;
+    --f-heading: #17324d;
+    --f-secondary: #4b5563;
+    --f-muted: #718096;
+
+    --f-border: #e2e8f0;
+    --f-input: #fbfcfe;
+    --f-input-border: #dce4ed;
+
+    --f-primary: #118b84;
+    --f-primary-hover: #0c716c;
+    --f-primary-soft: #e0f5f2;
+
+    --f-blue-soft: #edf2ff;
+    --f-blue: #4265b2;
+
+    --f-green-soft: #e1f7eb;
+    --f-green: #188451;
+
+    --f-danger-soft: #fff0f0;
+    --f-danger: #a52d35;
+    --f-danger-border: #f1c7c7;
+
+    --f-success-soft: #eaf9f0;
+    --f-success: #176b43;
+    --f-success-border: #bcebd0;
+
+    --f-shadow: 0 5px 20px rgba(29, 52, 77, 0.045);
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 12px 0;
+    color: var(--f-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.formulas-page *,
+.formulas-page *::before,
+.formulas-page *::after {
+    box-sizing: border-box;
+}
+
+/* MODO OSCURO */
+
+html.dark-mode .formulas-page {
+    --f-surface: #1f2937;
+    --f-surface-alt: #273449;
+    --f-hover: #334155;
+
+    --f-text: #e5e7eb;
+    --f-heading: #f1f5f9;
+    --f-secondary: #cbd5e1;
+    --f-muted: #a6b2c3;
+
+    --f-border: #374151;
+    --f-input: #182230;
+    --f-input-border: #465367;
+
+    --f-primary: #2ac4b8;
+    --f-primary-hover: #20a69d;
+    --f-primary-soft: #153b3b;
+
+    --f-blue-soft: #263858;
+    --f-blue: #a8c1ff;
+
+    --f-green-soft: #173b2d;
+    --f-green: #83e0ac;
+
+    --f-danger-soft: #442629;
+    --f-danger: #ffadb3;
+    --f-danger-border: #744047;
+
+    --f-success-soft: #173b2d;
+    --f-success: #91e4b4;
+    --f-success-border: #285b43;
+
+    --f-shadow: 0 5px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* ENCABEZADO */
+
+.formulas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.formulas-header h1 {
+    margin: 0 0 7px;
+    color: var(--f-heading);
+    font-size: 28px;
+    font-weight: 750;
+}
+
+.formulas-header p {
+    margin: 0;
+    color: var(--f-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* PANELES */
+
+.formula-panel {
+    margin-bottom: 22px;
+    padding: 25px;
+    background: var(--f-surface);
+    color: var(--f-text);
+    border: 1px solid var(--f-border);
+    border-radius: 17px;
+    box-shadow: var(--f-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.formula-panel-heading {
+    margin-bottom: 22px;
+}
+
+.formula-panel-heading h2 {
+    margin: 0 0 6px;
+    color: var(--f-heading);
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.formula-panel-heading p {
+    margin: 0;
+    color: var(--f-muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* DISTRIBUCIÓN DE CAMPOS */
+
+.formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.formula-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.formula-field label {
+    color: var(--f-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.formulas-page .formula-field input,
+.formulas-page .formula-field select,
+.formulas-page .formula-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+    padding: 10px 12px;
+    color: var(--f-text);
+    background: var(--f-input);
+    border: 1px solid var(--f-input-border);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: none;
+    color-scheme: light;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.formulas-page .formula-field textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+html.dark-mode .formulas-page .formula-field input,
+html.dark-mode .formulas-page .formula-field select,
+html.dark-mode .formulas-page .formula-field textarea {
+    color-scheme: dark;
+}
+
+.formulas-page .formula-field input::placeholder,
+.formulas-page .formula-field textarea::placeholder {
+    color: var(--f-muted);
+    opacity: 0.8;
+}
+
+.formulas-page .formula-field input:focus,
+.formulas-page .formula-field textarea:focus,
+.formulas-page .formula-field select:focus {
+    outline: none;
+    border-color: var(--f-primary);
+    box-shadow: 0 0 0 3px rgba(17, 139, 132, 0.14);
+    background: var(--f-surface);
+}
+
+html.dark-mode .formulas-page .formula-field input:focus,
+html.dark-mode .formulas-page .formula-field textarea:focus,
+html.dark-mode .formulas-page .formula-field select:focus {
+    box-shadow: 0 0 0 3px rgba(42, 196, 184, 0.15);
+}
+
+.formulas-page .formula-field small {
+    color: var(--f-muted);
+    font-size: 12px;
+}
+
+.patient-field {
+    max-width: 650px;
+}
+
+.date-field {
+    max-width: 300px;
+}
+
+.observations-field {
+    margin-top: 18px;
+}
+
+/* AUTOCOMPLETADO */
+
+.formulas-page .autocomplete {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.formulas-page .autocomplete-results {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    transform: translateY(-1px);
+    max-height: 260px;
+    overflow-y: auto;
+    background: var(--f-surface);
+    color: var(--f-text);
+    border: 1px solid #36b9ad;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 5px 18px rgba(17, 139, 132, 0.13);
+    z-index: 1500;
+}
+
+.formulas-page .autocomplete-results.visible {
+    display: block;
+}
+
+.formulas-page .autocomplete-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    padding: 12px 14px;
+    color: var(--f-text) !important;
+    background: var(--f-surface) !important;
+    border: none;
+    border-bottom: 1px solid var(--f-border);
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.formulas-page .autocomplete-option:hover {
+    color: var(--f-text) !important;
+    background: var(--f-primary-soft) !important;
+}
+
+.formulas-page .autocomplete-option:last-child {
+    border-bottom: 0;
+}
+
+.formulas-page .autocomplete-option small {
+    color: var(--f-muted) !important;
+}
+
+.formulas-page .autocomplete-empty {
+    padding: 14px;
+    color: var(--f-muted) !important;
+    background: var(--f-surface);
+}
+
+.formulas-page .selection-status {
+    display: block;
+    min-height: 18px;
+    margin-top: 2px;
+    color: var(--f-success);
+}
+
+html.dark-mode .formulas-page .autocomplete-results {
+    background: #1f2937;
+    border-color: #2ac4b8;
+    box-shadow: 0 5px 18px rgba(42, 196, 184, 0.12);
+}
+
+/* SEPARADOR */
+
+.formula-separator {
+    height: 1px;
+    margin: 25px 0;
+    background: var(--f-border);
+}
+
+/* ENCABEZADO DE MEDICAMENTOS */
+
+.medicamentos-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.medicamentos-heading h3 {
+    margin: 0 0 5px;
+    color: var(--f-heading);
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.medicamentos-heading p {
+    margin: 0;
+    color: var(--f-muted);
+    font-size: 13px;
+}
+
+/* TARJETAS DE MEDICAMENTOS */
+
+.medicamento-card {
+    margin-bottom: 15px;
+    padding: 18px;
+    background: var(--f-surface-alt);
+    color: var(--f-text);
+    border: 1px solid var(--f-border);
+    border-radius: 11px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.medicamento-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.medicamento-card-heading strong {
+    color: var(--f-heading);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.medicamento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* BOTONES */
+
+.formulas-page .formula-btn-primary,
+.formulas-page .formula-btn-secondary,
+.formulas-page .formula-btn-cancel,
+.formulas-page .eliminarMedicamento,
+.formulas-page #agregarMedicamento,
+.formulas-page .formula-actions button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+/* Botón principal */
+
+.formulas-page .formula-btn-primary,
+.formulas-page .formula-actions button[type="submit"] {
+    color: #ffffff;
+    background: var(--f-primary);
+    border: 1px solid var(--f-primary);
+}
+
+.formulas-page .formula-btn-primary:hover,
+.formulas-page .formula-actions button[type="submit"]:hover {
+    color: #ffffff;
+    background: var(--f-primary-hover);
+    border-color: var(--f-primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Botón secundario */
+
+.formulas-page .formula-btn-secondary,
+.formulas-page #agregarMedicamento {
+    color: var(--f-primary);
+    background: var(--f-primary-soft);
+    border: 1px solid var(--f-border);
+}
+
+.formulas-page .formula-btn-secondary:hover,
+.formulas-page #agregarMedicamento:hover {
+    color: var(--f-primary-hover);
+    background: var(--f-hover);
+    border-color: var(--f-primary);
+}
+
+/* Botón quitar */
+
+.formulas-page .eliminarMedicamento {
+    min-height: 32px;
+    padding: 6px 11px;
+    color: var(--f-danger);
+    background: var(--f-danger-soft);
+    border: 1px solid var(--f-danger-border);
+}
+
+.formulas-page .eliminarMedicamento:hover {
+    background: var(--f-danger-soft);
+    border-color: var(--f-danger);
+    transform: translateY(-1px);
+}
+
+/* Botón cancelar */
+
+.formulas-page .formula-btn-cancel {
+    color: var(--f-secondary);
+    background: var(--f-surface-alt);
+    border: 1px solid var(--f-border);
+}
+
+.formulas-page .formula-btn-cancel:hover {
+    color: var(--f-heading);
+    background: var(--f-hover);
+    border-color: var(--f-muted);
+}
+
+/* ACCIONES DEL FORMULARIO */
+
+.formula-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* ACCESIBILIDAD */
+
+.formulas-page .formula-btn-primary:focus-visible,
+.formulas-page .formula-btn-secondary:focus-visible,
+.formulas-page .formula-btn-cancel:focus-visible,
+.formulas-page .eliminarMedicamento:focus-visible,
+.formulas-page #agregarMedicamento:focus-visible,
+.formulas-page .formula-actions button[type="submit"]:focus-visible {
+    outline: 3px solid var(--f-primary);
+    outline-offset: 3px;
+}
+
+/* ALERTAS */
+
+.formula-alert {
+    margin-bottom: 18px;
+    padding: 14px 17px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.formula-alert ul {
+    margin: 8px 0 0;
+    padding-left: 22px;
+}
+
+.formula-alert-success {
+    color: var(--f-success);
+    background: var(--f-success-soft);
+    border-color: var(--f-success-border);
+}
+
+.formula-alert-danger {
+    color: var(--f-danger);
+    background: var(--f-danger-soft);
+    border-color: var(--f-danger-border);
+}
+
+/* TABLA */
+
+.formula-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--f-border);
+    border-radius: 10px;
+}
+
+.formulas-page .formula-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    background: var(--f-surface);
+    color: var(--f-text);
+    text-align: left;
+}
+
+.formulas-page .formula-table th,
+.formulas-page .formula-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--f-border);
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.formulas-page .formula-table th {
+    color: var(--f-muted);
+    background: var(--f-surface-alt);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.formulas-page .formula-table td {
+    color: var(--f-text);
+    background: var(--f-surface);
+}
+
+.formulas-page .formula-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.formulas-page .formula-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.formulas-page .formula-table tbody tr:hover td {
+    background: var(--f-hover);
+}
+
+.formula-medicine-summary {
+    margin: 3px 0;
+}
+
+.formula-medicine-summary span {
+    color: var(--f-muted);
+}
+
+.formula-status {
+    display: inline-block;
+    padding: 6px 10px;
+    color: var(--f-green);
+    background: var(--f-green-soft);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.formula-empty {
+    padding: 30px !important;
+    color: var(--f-muted) !important;
+    text-align: center;
+}
+
+/* BOTÓN MODIFICAR */
+
+.formula-table .btn-modificar-formula {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 115px;
+    min-height: 37px;
+    padding: 0 16px;
+    border: 1px solid #818cf8;
+    border-radius: 8px;
+    background: #eef0ff;
+    color: #4f46b5;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.formula-table .btn-modificar-formula:hover {
+    background: #6366d9;
+    border-color: #6366d9;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(99, 102, 217, 0.22);
+}
+
+/* BOTÓN CANCELAR EDICIÓN */
+
+.formula-actions .btn-cancelar-edicion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 0 20px;
+    border: 1px solid #f0a49b;
+    border-radius: 9px;
+    background: #fff0ed;
+    color: #c45145;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.formula-actions .btn-cancelar-edicion:hover {
+    background: #e87568;
+    border-color: #e87568;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(232, 117, 104, 0.22);
+}
+
+/* MODO OSCURO - BOTONES ESPECIALES */
+
+html.dark-mode .formula-actions .btn-cancelar-edicion {
+    background: #492b2b;
+    border-color: #854d4d;
+    color: #ffaaa0;
+}
+
+html.dark-mode .formula-actions .btn-cancelar-edicion:hover {
+    background: #b9574e;
+    border-color: #b9574e;
+    color: #ffffff;
+}
+
+html.dark-mode .formula-table .btn-modificar-formula {
+    background: #302f59;
+    border-color: #6565ad;
+    color: #b9baff;
+}
+
+html.dark-mode .formula-table .btn-modificar-formula:hover {
+    background: #5958b5;
+    border-color: #5958b5;
+    color: #ffffff;
+}
+
+/* PAGINACIÓN */
+
+.formula-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.formula-pagination nav p {
+    color: var(--f-muted);
+    font-size: 13px;
+}
+
+.formula-pagination nav a,
+.formula-pagination nav span {
+    color: var(--f-text);
+    background: var(--f-surface);
+    border-color: var(--f-border);
+}
+
+.formula-pagination nav [aria-current="page"] span {
+    color: #ffffff;
+    background: var(--f-primary);
+    border-color: var(--f-primary);
+}
+
+
+/* =========================================
+   HU-027 - DISPONIBILIDAD POR SEDE
+   ========================================= */
+
+/* PANEL DE DISPONIBILIDAD */
+
+.disponibilidad-panel {
+    position: relative;
+}
+
+.disponibilidad-panel .formula-panel-heading {
+    margin-bottom: 18px;
+}
+
+.disponibilidad-panel #toggleDisponibilidad {
+    min-width: 230px;
+}
+
+#contenidoDisponibilidad[hidden] {
+    display: none !important;
+}
+
+#contenidoDisponibilidad {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--f-border);
+    animation: aparecerDisponibilidad 0.25s ease;
+}
+
+@keyframes aparecerDisponibilidad {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BUSCADOR */
+
+.disponibilidad-buscador {
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 22px;
+}
+
+.disponibilidad-buscador input {
+    width: 100%;
+}
+
+/* MENSAJES Y RESULTADOS */
+
+.disponibilidad-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.disponibilidad-mensaje {
+    padding: 15px 17px;
+    color: var(--f-secondary);
+    background: var(--f-surface-alt);
+    border: 1px solid var(--f-border);
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.disponibilidad-mensaje.error {
+    color: var(--f-danger);
+    background: var(--f-danger-soft);
+    border-color: var(--f-danger-border);
+}
+
+.disponibilidad-mensaje.cargando {
+    color: var(--f-blue);
+    background: var(--f-blue-soft);
+    border-color: var(--f-border);
+}
+
+/* ENCABEZADO DE RESULTADOS */
+
+.disponibilidad-resultados-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2px;
+}
+
+.disponibilidad-resultados-heading h3 {
+    margin: 0;
+    color: var(--f-heading);
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.disponibilidad-resultados-heading p {
+    margin: 4px 0 0;
+    color: var(--f-muted);
+    font-size: 12px;
+}
+
+/* TARJETAS DE SEDES */
+
+.disponibilidad-sedes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+}
+
+.disponibilidad-sede {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    padding: 17px;
+    background: var(--f-surface-alt);
+    border: 1px solid var(--f-border);
+    border-radius: 12px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.disponibilidad-sede:hover {
+    border-color: var(--f-primary);
+}
+
+.disponibilidad-sede-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.disponibilidad-sede-heading h4 {
+    margin: 0;
+    color: var(--f-heading);
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+.disponibilidad-sede-direccion {
+    margin: 0;
+    color: var(--f-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.disponibilidad-sede-stock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 11px;
+    border-top: 1px solid var(--f-border);
+}
+
+.disponibilidad-sede-stock span {
+    color: var(--f-secondary);
+    font-size: 12px;
+}
+
+.disponibilidad-sede-stock strong {
+    color: var(--f-heading);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.disponibilidad-stock-minimo {
+    color: var(--f-muted);
+    font-size: 11px;
+}
+
+/* ESTADOS DE DISPONIBILIDAD */
+
+.disponibilidad-estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.disponibilidad-estado.disponible {
+    color: var(--f-success);
+    background: var(--f-success-soft);
+    border-color: var(--f-success-border);
+}
+
+.disponibilidad-estado.bajo {
+    color: #98620b;
+    background: #fff5d9;
+    border-color: #f1d99a;
+}
+
+.disponibilidad-estado.agotado {
+    color: var(--f-danger);
+    background: var(--f-danger-soft);
+    border-color: var(--f-danger-border);
+}
+
+.disponibilidad-estado.inactivo {
+    color: var(--f-blue);
+    background: var(--f-blue-soft);
+    border-color: var(--f-border);
+}
+
+.disponibilidad-estado.sin-inventario {
+    color: var(--f-muted);
+    background: var(--f-hover);
+    border-color: var(--f-border);
+}
+
+/* MODO OSCURO */
+
+html.dark-mode .disponibilidad-estado.bajo {
+    color: #f5d27d;
+    background: #493b20;
+    border-color: #76602e;
+}
+
+html.dark-mode .disponibilidad-estado.agotado {
+    color: var(--f-danger);
+    background: var(--f-danger-soft);
+    border-color: var(--f-danger-border);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .disponibilidad-panel #toggleDisponibilidad {
+        width: 100%;
+    }
+
+    .disponibilidad-sedes {
+        grid-template-columns: 1fr;
+    }
+
+    .disponibilidad-sede {
+        padding: 15px;
+    }
+
+    .disponibilidad-resultados-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* TABLETAS */
+
+@media (max-width: 1000px) {
+    .medicamento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .formula-panel {
+        padding: 22px;
+    }
+}
+
+/* MÓVILES */
+
+@media (max-width: 700px) {
+    .formulas-page {
+        width: 100%;
+    }
+
+    .formulas-header {
+        gap: 12px;
+    }
+
+    .formulas-header h1 {
+        font-size: 24px;
+    }
+
+    .formula-panel {
+        padding: 18px 14px;
+    }
+
+    .medicamento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .medicamentos-heading {
+        align-items: flex-start;
+    }
+
+    .formula-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .formula-actions > *,
+    .formula-actions button,
+    .formulas-page #agregarMedicamento {
+        width: 100%;
+    }
+}
+
+/* MÓVILES PEQUEÑOS */
+
+@media (max-width: 420px) {
+    .formulas-header h1 {
+        font-size: 22px;
+    }
+
+    .formula-panel {
+        padding: 16px 12px;
+    }
+
+    .medicamento-card {
+        padding: 14px;
+    }
+}

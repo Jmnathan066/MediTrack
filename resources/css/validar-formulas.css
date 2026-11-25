@@ -1,0 +1,824 @@
+
+/* =========================================
+   MEDITRACK EPS - VALIDAR FORMULAS
+   HU-013
+   ========================================= */
+
+.validar-formulas-content {
+    min-width: 0;
+}
+
+.validar-formulas-page {
+    --vf-surface: #ffffff;
+    --vf-surface-alt: #f8fafc;
+    --vf-hover: #f0f5f9;
+
+    --vf-text: #243247;
+    --vf-heading: #17324d;
+    --vf-secondary: #4b5563;
+    --vf-muted: #718096;
+
+    --vf-border: #e2e8f0;
+
+    --vf-primary: #118b84;
+    --vf-primary-hover: #0c716c;
+    --vf-primary-soft: #e0f5f2;
+
+    --vf-success: #188451;
+    --vf-success-soft: #e1f7eb;
+    --vf-success-border: #bcebd0;
+
+    --vf-danger: #a52d35;
+    --vf-danger-soft: #fff0f0;
+    --vf-danger-border: #f1c7c7;
+
+    --vf-shadow: 0 5px 20px rgba(29, 52, 77, 0.045);
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 12px 0;
+
+    color: var(--vf-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    box-sizing: border-box;
+}
+
+.validar-formulas-page *,
+.validar-formulas-page *::before,
+.validar-formulas-page *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   MODO OSCURO
+   ========================================= */
+
+html.dark-mode .validar-formulas-page {
+    --vf-surface: #1f2937;
+    --vf-surface-alt: #273449;
+    --vf-hover: #334155;
+
+    --vf-text: #e5e7eb;
+    --vf-heading: #f1f5f9;
+    --vf-secondary: #cbd5e1;
+    --vf-muted: #a6b2c3;
+
+    --vf-border: #374151;
+
+    --vf-primary: #2ac4b8;
+    --vf-primary-hover: #20a69d;
+    --vf-primary-soft: #153b3b;
+
+    --vf-success: #83e0ac;
+    --vf-success-soft: #173b2d;
+    --vf-success-border: #285b43;
+
+    --vf-danger: #ffadb3;
+    --vf-danger-soft: #442629;
+    --vf-danger-border: #744047;
+
+    --vf-shadow: 0 5px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+.vf-header {
+    margin-bottom: 22px;
+}
+
+.vf-header h1 {
+    margin: 0 0 7px;
+    color: var(--vf-heading);
+    font-size: 28px;
+    font-weight: 750;
+}
+
+.vf-header p {
+    margin: 0;
+    color: var(--vf-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   PANELES
+   ========================================= */
+
+.vf-panel {
+    margin-bottom: 22px;
+    padding: 25px;
+
+    background: var(--vf-surface);
+    color: var(--vf-text);
+
+    border: 1px solid var(--vf-border);
+    border-radius: 15px;
+
+    box-shadow: var(--vf-shadow);
+}
+
+.vf-panel-heading,
+.vf-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+.vf-panel-heading {
+    justify-content: flex-start;
+}
+
+.vf-panel-heading h2,
+.vf-section-title h2 {
+    margin: 0 0 5px;
+    color: var(--vf-heading);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.vf-panel-heading p,
+.vf-section-title p {
+    margin: 0;
+    color: var(--vf-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.vf-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 44px;
+    height: 44px;
+
+    color: var(--vf-primary);
+    background: var(--vf-primary-soft);
+    border-radius: 11px;
+}
+
+.vf-heading-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* =========================================
+   BUSCADOR
+   ========================================= */
+
+.vf-search-form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.vf-search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 100%;
+    max-width: 480px;
+}
+
+.vf-search-field label {
+    color: var(--vf-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.vf-search-field input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+
+    color: var(--vf-text);
+    background: var(--vf-surface-alt);
+
+    border: 1px solid var(--vf-border);
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.vf-search-field input::placeholder {
+    color: var(--vf-muted);
+}
+
+.vf-search-field input:focus {
+    outline: none;
+    border-color: var(--vf-primary);
+    box-shadow: 0 0 0 3px rgba(17, 139, 132, 0.13);
+}
+
+html.dark-mode .vf-search-field input:focus {
+    box-shadow: 0 0 0 3px rgba(42, 196, 184, 0.15);
+}
+
+html.dark-mode .vf-search-field input {
+    color-scheme: dark;
+}
+
+/* BOTONES */
+
+.vf-btn-search,
+.vf-btn-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 10px 17px;
+
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.vf-btn-search {
+    color: #ffffff;
+    background: var(--vf-primary);
+    border: 1px solid var(--vf-primary);
+}
+
+.vf-btn-search:hover {
+    color: #ffffff;
+    background: var(--vf-primary-hover);
+    border-color: var(--vf-primary-hover);
+    transform: translateY(-1px);
+}
+
+.vf-btn-search svg {
+    width: 17px;
+    height: 17px;
+}
+
+.vf-btn-clear {
+    color: var(--vf-secondary);
+    background: var(--vf-surface-alt);
+    border: 1px solid var(--vf-border);
+}
+
+.vf-btn-clear:hover {
+    color: var(--vf-heading);
+    background: var(--vf-hover);
+}
+
+/* =========================================
+   INFORMACIÓN DEL PACIENTE
+   ========================================= */
+
+.vf-patient-panel {
+    border-top: 3px solid var(--vf-primary);
+}
+
+.vf-patient-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.vf-patient-data {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vf-patient-data span,
+.vf-medicine-details span {
+    color: var(--vf-muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.vf-patient-data strong {
+    color: var(--vf-heading);
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.vf-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 11px;
+
+    color: var(--vf-success);
+    background: var(--vf-success-soft);
+
+    border: 1px solid var(--vf-success-border);
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.vf-verified svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* =========================================
+   CONTADOR DE FÓRMULAS
+   ========================================= */
+
+.vf-count {
+    padding: 7px 12px;
+
+    color: var(--vf-primary);
+    background: var(--vf-primary-soft);
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+/* =========================================
+   TARJETAS DE FÓRMULAS
+   ========================================= */
+
+.vf-formula-card {
+    margin-bottom: 17px;
+    padding: 20px;
+
+    background: var(--vf-surface-alt);
+    border: 1px solid var(--vf-border);
+    border-radius: 12px;
+}
+
+.vf-formula-card:last-child {
+    margin-bottom: 0;
+}
+
+.vf-formula-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 17px;
+    border-bottom: 1px solid var(--vf-border);
+}
+
+.vf-formula-label {
+    color: var(--vf-primary);
+    font-size: 11px;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.vf-formula-info h3 {
+    margin: 5px 0;
+    color: var(--vf-heading);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.vf-formula-info p {
+    margin: 0;
+    color: var(--vf-muted);
+    font-size: 13px;
+}
+
+.vf-formula-info p strong {
+    color: var(--vf-secondary);
+}
+
+.vf-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.vf-status-active {
+    color: var(--vf-success);
+    background: var(--vf-success-soft);
+    border: 1px solid var(--vf-success-border);
+}
+
+.vf-status-other {
+    color: var(--vf-secondary);
+    background: var(--vf-hover);
+    border: 1px solid var(--vf-border);
+}
+
+/* =========================================
+   OBSERVACIONES
+   ========================================= */
+
+.vf-observations {
+    margin-top: 16px;
+    padding: 13px 15px;
+
+    background: var(--vf-surface);
+    border: 1px solid var(--vf-border);
+    border-radius: 9px;
+}
+
+.vf-observations strong {
+    color: var(--vf-heading);
+    font-size: 12px;
+}
+
+.vf-observations p {
+    margin: 6px 0 0;
+    color: var(--vf-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   MEDICAMENTOS
+   ========================================= */
+
+.vf-medicines-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin: 20px 0 13px;
+}
+
+.vf-medicines-heading h4 {
+    margin: 0;
+    color: var(--vf-heading);
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.vf-medicines-heading span {
+    color: var(--vf-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.vf-medicine-card {
+    margin-bottom: 12px;
+    padding: 16px;
+
+    background: var(--vf-surface);
+    border: 1px solid var(--vf-border);
+    border-radius: 10px;
+}
+
+.vf-medicine-card:last-child {
+    margin-bottom: 0;
+}
+
+.vf-medicine-name {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 16px;
+}
+
+.vf-medicine-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 37px;
+    height: 37px;
+
+    color: var(--vf-primary);
+    background: var(--vf-primary-soft);
+    border-radius: 9px;
+}
+
+.vf-medicine-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.vf-medicine-name div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.vf-medicine-name span {
+    color: var(--vf-muted);
+    font-size: 11px;
+}
+
+.vf-medicine-name strong {
+    color: var(--vf-heading);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.vf-medicine-details {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    padding-top: 14px;
+    border-top: 1px solid var(--vf-border);
+}
+
+.vf-medicine-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vf-medicine-details strong {
+    color: var(--vf-text);
+    font-size: 13px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.vf-medicine-details .vf-indications {
+    grid-column: 1 / -1;
+}
+
+.vf-empty-medicines {
+    padding: 15px;
+    color: var(--vf-muted);
+    background: var(--vf-surface);
+    border: 1px dashed var(--vf-border);
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+/* =========================================
+   ESTADOS VACÍOS
+   ========================================= */
+
+.vf-initial-state {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.vf-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.vf-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+    margin-bottom: 15px;
+
+    color: var(--vf-primary);
+    background: var(--vf-primary-soft);
+    border-radius: 15px;
+}
+
+.vf-empty-icon svg {
+    width: 29px;
+    height: 29px;
+}
+
+.vf-empty-icon-danger {
+    color: var(--vf-danger);
+    background: var(--vf-danger-soft);
+}
+
+.vf-empty h3 {
+    margin: 0 0 8px;
+    color: var(--vf-heading);
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.vf-empty p {
+    max-width: 490px;
+    margin: 0;
+    color: var(--vf-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.vf-empty-hint {
+    margin-top: 12px;
+    color: var(--vf-muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   ALERTAS
+   ========================================= */
+
+.vf-alert {
+    margin-bottom: 18px;
+    padding: 14px 17px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.vf-alert ul {
+    margin: 8px 0 0;
+    padding-left: 22px;
+}
+
+.vf-alert-success {
+    color: var(--vf-success);
+    background: var(--vf-success-soft);
+    border-color: var(--vf-success-border);
+}
+
+.vf-alert-danger {
+    color: var(--vf-danger);
+    background: var(--vf-danger-soft);
+    border-color: var(--vf-danger-border);
+}
+
+/* =========================================
+   ACCESIBILIDAD
+   ========================================= */
+
+.validar-formulas-page button:focus-visible,
+.validar-formulas-page a:focus-visible,
+.validar-formulas-page input:focus-visible {
+    outline: 3px solid var(--vf-primary);
+    outline-offset: 3px;
+}
+
+
+/* Resultados cuando la búsqueda por nombre encuentra varios pacientes */
+.vf-patient-result {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    margin-top: 14px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+    background: var(--card-background, #fff);
+}
+
+.vf-patient-result .vf-patient-data {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vf-patient-result .vf-patient-data span {
+    font-size: 13px;
+    color: var(--text-secondary, #6b7280);
+}
+
+.vf-patient-result .vf-patient-data strong {
+    font-size: 15px;
+    color: var(--text-primary, #1f2937);
+}
+
+@media (max-width: 700px) {
+    .vf-patient-result {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .vf-patient-result .vf-btn-search {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+html.dark-mode .vf-patient-result {
+    background: var(--card-background, #1f2937);
+    border-color: var(--border-color, #374151);
+}
+
+html.dark-mode .vf-patient-result .vf-patient-data strong {
+    color: var(--text-primary, #f9fafb);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+    .vf-medicine-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .validar-formulas-page {
+        width: 100%;
+    }
+
+    .vf-header h1 {
+        font-size: 24px;
+    }
+
+    .vf-panel {
+        padding: 18px 15px;
+    }
+
+    .vf-search-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .vf-search-field {
+        max-width: none;
+    }
+
+    .vf-btn-search,
+    .vf-btn-clear {
+        width: 100%;
+    }
+
+    .vf-section-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .vf-patient-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .vf-formula-card {
+        padding: 15px;
+    }
+
+    .vf-formula-header {
+        flex-direction: column;
+    }
+
+    .vf-medicine-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .vf-empty {
+        padding: 25px 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    .vf-header h1 {
+        font-size: 22px;
+    }
+
+    .vf-panel {
+        padding: 16px 12px;
+    }
+
+    .vf-medicine-details {
+        grid-template-columns: 1fr;
+    }
+
+    .vf-medicine-details .vf-indications {
+        grid-column: auto;
+    }
+
+    .vf-verified {
+        white-space: normal;
+    }
+}

@@ -1,7 +1,9 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicamentoController;
@@ -9,52 +11,49 @@ use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\GestionUsuariosController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\SedeController;
+use App\Http\Controllers\EpsController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\FormulaMedicaController;
+use App\Http\Controllers\ValidarFormulaController;
+use App\Http\Controllers\OrdenEntregaController;
+use App\Http\Controllers\ReclamoMedicamentoController;
 
 
 // =====================================================
 // AUTENTICACIÓN: LOGIN, REGISTRO Y RECUPERACIÓN
 // =====================================================
 
-// Página principal: redirige al login.
 Route::get('/', function () {
     return redirect('/login');
 });
 
-// Mostrar el formulario de inicio de sesión.
-// La vista está en resources/views/login.blade.php.
 Route::get('/login', [AuthController::class, 'login'])
     ->name('login');
 
-// Procesar el inicio de sesión.
 Route::post('/login', [AuthController::class, 'validar'])
     ->name('login.validar');
 
-// Registro.
 Route::get('/registrarse', [AuthController::class, 'registrarvista'])
     ->name('registrarse');
 
 Route::post('/registrar', [AuthController::class, 'guardar'])
     ->name('registrar');
 
-// Cerrar sesión.
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
-// Recuperación de contraseña.
 Route::get('/recuperar', [AuthController::class, 'vista'])
     ->name('recuperar');
 
 Route::post('/recuperar', [AuthController::class, 'enviarCodigo'])
     ->name('recuperar.enviar');
 
-// Validación del código.
 Route::get('/validar-codigo', [AuthController::class, 'vistaCodigo'])
     ->name('codigo.vista');
 
 Route::post('/validar-codigo', [AuthController::class, 'validarCodigo'])
     ->name('codigo.validar');
 
-// Nueva contraseña.
 Route::get('/nueva-password', [AuthController::class, 'vistaNuevaPassword'])
     ->name('password.nueva');
 
@@ -105,6 +104,9 @@ Route::middleware('auth.custom:admin,entidad')->group(function () {
     Route::get('/medicamentos/crear', [MedicamentoController::class, 'mostrarFormulario'])
         ->name('medicamentos.crear');
 
+    Route::get('/medicamentos/detectar', [MedicamentoController::class, 'detectarMedicamento'])
+        ->name('medicamentos.detectar');
+
     Route::post('/medicamentos/guardar', [MedicamentoController::class, 'store'])
         ->name('medicamentos.guardar');
 
@@ -119,6 +121,11 @@ Route::middleware('auth.custom:admin,entidad')->group(function () {
 
     Route::post('/medicamentos/eliminar/{id}', [MedicamentoController::class, 'eliminarMedicamento'])
         ->name('medicamentos.eliminar.confirmar');
+
+    Route::post(
+        '/medicamentos/{idMedicamento}/lotes/{idLote}/estado',
+        [MedicamentoController::class, 'cambiarEstadoLote']
+    )->name('medicamentos.lotes.estado');
 });
 
 
@@ -151,6 +158,29 @@ Route::middleware('auth.custom:admin')->group(function () {
 
 
 // =====================================================
+// GESTIÓN DE EPS: SOLO ADMIN
+// =====================================================
+
+Route::middleware('auth.custom:admin')->group(function () {
+
+    Route::get('/eps', [EpsController::class, 'index'])
+        ->name('eps.index');
+
+    Route::post('/eps', [EpsController::class, 'store'])
+        ->name('eps.store');
+
+    Route::get('/eps/{id}/editar', [EpsController::class, 'edit'])
+        ->name('eps.edit');
+
+    Route::put('/eps/{id}', [EpsController::class, 'update'])
+        ->name('eps.update');
+
+    Route::patch('/eps/{id}/estado', [EpsController::class, 'cambiarEstado'])
+        ->name('eps.estado');
+});
+
+
+// =====================================================
 // CONSULTA DE PACIENTES: ADMIN Y ENTIDAD
 // =====================================================
 
@@ -158,6 +188,17 @@ Route::middleware('auth.custom:admin,entidad')->group(function () {
 
     Route::get('/pacientes', [PacienteController::class, 'index'])
         ->name('pacientes.index');
+});
+
+
+// =====================================================
+// HU-013: VALIDAR FÓRMULAS - SOLO ENTIDAD
+// =====================================================
+
+Route::middleware('auth.custom:entidad')->group(function () {
+
+    Route::get('/empresa/validar-formulas', [ValidarFormulaController::class, 'index'])
+        ->name('empresa.formulas.index');
 });
 
 
@@ -209,3 +250,86 @@ Route::post('/cambiar-sede', function (Request $request) {
         ->with('success', 'Sede cambiada correctamente.');
 
 })->middleware('auth.custom')->name('sedes.cambiar');
+
+
+// =====================================================
+// CONSULTA MÉDICA: DOCTOR Y ADMIN
+// =====================================================
+
+Route::middleware('auth.custom:doctor,admin')->group(function () {
+
+    Route::get('/doctor/pacientes', [DoctorController::class, 'pacientes'])
+        ->name('doctor.pacientes');
+});
+
+
+// =====================================================
+// REGISTRO DE OBSERVACIONES: SOLO DOCTOR
+// =====================================================
+
+Route::middleware('auth.custom:doctor')->group(function () {
+
+    Route::post('/doctor/observaciones', [DoctorController::class, 'guardarObservacion'])
+        ->name('doctor.observaciones.guardar');
+});
+
+
+// =====================================================
+// FÓRMULAS MÉDICAS: SOLO DOCTOR
+// =====================================================
+
+Route::middleware('auth.custom:doctor')->group(function () {
+
+    Route::get('/doctor/formulas', [FormulaMedicaController::class, 'index'])
+        ->name('doctor.formulas');
+
+    Route::post('/doctor/formulas', [FormulaMedicaController::class, 'guardar'])
+        ->name('doctor.formulas.guardar');
+
+    Route::get('/doctor/formulas/{id}/editar', [FormulaMedicaController::class, 'editar'])
+        ->name('doctor.formulas.editar');
+
+    Route::put('/doctor/formulas/{id}', [FormulaMedicaController::class, 'actualizar'])
+        ->name('doctor.formulas.actualizar');
+
+    Route::get(
+        '/doctor/medicamentos/{id}/disponibilidad',
+        [MedicamentoController::class, 'consultarDisponibilidad']
+    )->name('doctor.medicamentos.disponibilidad');
+});
+
+
+// =====================================================
+// HU-014: ÓRDENES DE ENTREGA - ENTIDAD
+// =====================================================
+
+Route::middleware('auth.custom:entidad')->group(function () {
+
+    Route::get(
+        '/empresa/ordenes-entrega',
+        [OrdenEntregaController::class, 'index']
+    )->name('empresa.ordenes.index');
+
+    Route::post(
+        '/empresa/ordenes-entrega',
+        [OrdenEntregaController::class, 'guardar']
+    )->name('empresa.ordenes.guardar');
+});
+
+
+// =====================================================
+// HU-020: RECLAMOS DE MEDICAMENTOS - PACIENTE
+// =====================================================
+
+Route::middleware('auth.custom:paciente')->group(function () {
+
+    Route::get(
+        '/paciente/reclamos',
+        [ReclamoMedicamentoController::class, 'index']
+    )->name('paciente.reclamos.index');
+
+    Route::post(
+        '/paciente/reclamos',
+        [ReclamoMedicamentoController::class, 'guardar']
+    )->name('paciente.reclamos.guardar');
+});

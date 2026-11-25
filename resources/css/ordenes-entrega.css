@@ -1,0 +1,583 @@
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.oe-container {
+    padding: 25px;
+    max-width: 1250px;
+    margin: 0 auto;
+    color: var(--text-color, #263238);
+    box-sizing: border-box;
+}
+
+.oe-header {
+    margin-bottom: 25px;
+}
+
+.oe-header h1 {
+    font-size: 27px;
+    margin: 0 0 7px;
+    font-weight: 700;
+}
+
+.oe-header p,
+.oe-section-title p {
+    margin: 0;
+    color: var(--text-secondary, #7b8794);
+}
+
+/* =========================================
+   TARJETAS Y SECCIONES
+========================================= */
+
+.oe-card {
+    background: var(--card-bg, #FFFFFF);
+    border: 1px solid var(--border-color, #E5E9EF);
+    border-radius: 13px;
+    padding: 23px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .035);
+    box-sizing: border-box;
+}
+
+.oe-section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.oe-section-title h2 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.oe-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba(40, 120, 210, .1);
+    color: #2878D2;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   FORMULARIOS
+========================================= */
+
+.oe-card label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.oe-input {
+    width: 100%;
+    min-height: 43px;
+    border: 1px solid var(--border-color, #DCE2E9);
+    border-radius: 8px;
+    padding: 10px 13px;
+    background: var(--input-bg, #FFFFFF);
+    color: var(--text-color, #263238);
+    outline: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.oe-input:focus {
+    border-color: #2878D2;
+    box-shadow: 0 0 0 3px rgba(40, 120, 210, .1);
+}
+
+.oe-input::placeholder {
+    color: #9CA3AF;
+}
+
+.oe-card > small {
+    display: block;
+    margin-top: 8px;
+    color: var(--text-secondary, #7B8794);
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.oe-search {
+    display: flex;
+    gap: 12px;
+}
+
+.oe-button {
+    border: none;
+    border-radius: 8px;
+    background: #2878D2;
+    color: #FFFFFF;
+    min-height: 43px;
+    padding: 10px 19px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.oe-button:hover {
+    background: #1D65B7;
+    color: #FFFFFF;
+}
+
+.oe-button-secondary {
+    background: rgba(40, 120, 210, .1);
+    color: #2878D2;
+}
+
+.oe-button-secondary:hover {
+    background: #2878D2;
+    color: #FFFFFF;
+}
+
+/* =========================================
+   RESULTADOS DE BÚSQUEDA
+========================================= */
+
+.oe-results {
+    margin-top: 22px;
+}
+
+.oe-results h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.oe-patient-result {
+    width: 100%;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    border: 1px solid var(--border-color, #E5E9EF);
+    background: var(--input-bg, #FFFFFF);
+    color: var(--text-color, #263238);
+    border-radius: 9px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.oe-patient-result:hover {
+    border-color: #2878D2;
+}
+
+.oe-patient-result strong,
+.oe-patient-result small {
+    display: block;
+}
+
+.oe-patient-result small {
+    margin-top: 5px;
+    color: var(--text-secondary, #7B8794);
+}
+
+/* =========================================
+   INFORMACIÓN DEL PACIENTE
+========================================= */
+
+.oe-patient {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-top: 22px;
+    padding: 17px;
+    border-radius: 10px;
+    background: rgba(40, 120, 210, .07);
+}
+
+.oe-patient-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #2878D2;
+    color: #FFFFFF;
+    flex-shrink: 0;
+}
+
+.oe-patient span,
+.oe-patient p {
+    color: var(--text-secondary, #7B8794);
+    font-size: 12px;
+}
+
+.oe-patient h3 {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.oe-patient p {
+    margin: 0;
+}
+
+/* =========================================
+   FÓRMULAS MÉDICAS
+========================================= */
+
+.oe-formula {
+    padding: 17px;
+    border: 1px solid var(--border-color, #E5E9EF);
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.oe-formula-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.oe-formula-info div strong,
+.oe-formula-info div span,
+.oe-formula-info div small {
+    display: block;
+}
+
+.oe-formula-info div span,
+.oe-formula-info div small {
+    margin-top: 5px;
+    color: var(--text-secondary, #7B8794);
+    font-size: 12px;
+}
+
+.oe-status,
+.oe-complete {
+    background: rgba(32, 160, 100, .12);
+    color: #15945A;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.oe-formula-actions {
+    margin-top: 15px;
+}
+
+/* =========================================
+   MEDICAMENTOS
+========================================= */
+
+.oe-medicine {
+    border: 1px solid var(--border-color, #E5E9EF);
+    border-radius: 10px;
+    padding: 19px;
+    margin-bottom: 15px;
+}
+
+.oe-medicine-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.oe-medicine-heading h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.oe-pending {
+    background: rgba(235, 160, 30, .14);
+    color: #BD7D0D;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.oe-medicine-info {
+    margin: 15px 0;
+    padding: 12px;
+    background: var(--input-bg, #F8FAFC);
+    border-radius: 8px;
+}
+
+.oe-medicine-info p {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.oe-quantity-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 17px 0;
+}
+
+.oe-quantity-info div {
+    padding: 12px;
+    border: 1px solid var(--border-color, #E5E9EF);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.oe-quantity-info span,
+.oe-quantity-info strong {
+    display: block;
+}
+
+.oe-quantity-info span {
+    font-size: 12px;
+    color: var(--text-secondary, #7B8794);
+}
+
+.oe-quantity-info strong {
+    margin-top: 5px;
+    font-size: 19px;
+}
+
+.oe-delivery-input {
+    max-width: 300px;
+}
+
+/* =========================================
+   BOTÓN DE REGISTRO
+========================================= */
+
+.oe-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+/* =========================================
+   ALERTAS Y MENSAJES
+========================================= */
+
+.oe-alert {
+    padding: 14px 17px;
+    border-radius: 9px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.oe-alert ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+}
+
+.oe-success {
+    background: rgba(32, 160, 100, .12);
+    color: #15945A;
+}
+
+.oe-error {
+    background: rgba(220, 55, 55, .1);
+    color: #C43B3B;
+}
+
+.oe-empty {
+    padding: 18px;
+    text-align: center;
+    color: var(--text-secondary, #7B8794);
+    background: var(--input-bg, #F8FAFC);
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+/* =========================================
+   MODO OSCURO
+========================================= */
+
+html.dark-mode .oe-container {
+    color: #E5E7EB;
+}
+
+html.dark-mode .oe-header h1,
+html.dark-mode .oe-section-title h2,
+html.dark-mode .oe-results h3,
+html.dark-mode .oe-medicine-heading h3,
+html.dark-mode .oe-quantity-info strong,
+html.dark-mode .oe-patient h3,
+html.dark-mode .oe-formula-info strong {
+    color: #5EEAD4;
+}
+
+html.dark-mode .oe-header p,
+html.dark-mode .oe-section-title p,
+html.dark-mode .oe-card > small,
+html.dark-mode .oe-patient span,
+html.dark-mode .oe-patient p,
+html.dark-mode .oe-formula-info div span,
+html.dark-mode .oe-formula-info div small,
+html.dark-mode .oe-quantity-info span {
+    color: #CBD5E1;
+}
+
+/* Tarjetas */
+
+html.dark-mode .oe-card,
+html.dark-mode .oe-medicine,
+html.dark-mode .oe-formula,
+html.dark-mode .oe-patient-result {
+    background: #1F2937;
+    color: #E5E7EB;
+    border-color: #374151;
+}
+
+html.dark-mode .oe-card label {
+    color: #E5E7EB;
+}
+
+/* Campos */
+
+html.dark-mode .oe-container .oe-input {
+    background: #111827;
+    color: #F9FAFB;
+    border-color: #4B5563;
+}
+
+html.dark-mode .oe-container .oe-input::placeholder {
+    color: #9CA3AF;
+}
+
+html.dark-mode .oe-container .oe-input:focus {
+    border-color: #5EEAD4;
+    box-shadow: 0 0 0 3px rgba(94, 234, 212, .12);
+}
+
+html.dark-mode .oe-container .oe-input:disabled {
+    background: #273444;
+    color: #9CA3AF;
+}
+
+/* Resultados */
+
+html.dark-mode .oe-patient-result:hover {
+    background: #263545;
+    border-color: #5EEAD4;
+}
+
+/* Paciente */
+
+html.dark-mode .oe-patient {
+    background: #172A35;
+    color: #E5E7EB;
+}
+
+html.dark-mode .oe-patient-avatar {
+    background: #0F766E;
+    color: #FFFFFF;
+}
+
+/* Información de medicamentos */
+
+html.dark-mode .oe-medicine-info,
+html.dark-mode .oe-empty {
+    background: #172A35;
+    color: #E5E7EB;
+}
+
+html.dark-mode .oe-quantity-info div {
+    background: #172A35;
+    border-color: #374151;
+}
+
+/* Estados */
+
+html.dark-mode .oe-status,
+html.dark-mode .oe-complete {
+    background: rgba(32, 160, 100, .18);
+    color: #6EE7B7;
+}
+
+html.dark-mode .oe-pending {
+    background: rgba(235, 160, 30, .16);
+    color: #FCD34D;
+}
+
+/* Alertas */
+
+html.dark-mode .oe-success {
+    background: #143B32;
+    color: #A7F3D0;
+}
+
+html.dark-mode .oe-error {
+    background: #451F27;
+    color: #FECACA;
+}
+
+/* Botones */
+
+html.dark-mode .oe-button {
+    color: #FFFFFF;
+}
+
+html.dark-mode .oe-button-secondary {
+    background: #172A35;
+    color: #5EEAD4;
+}
+
+html.dark-mode .oe-button-secondary:hover {
+    background: #0F766E;
+    color: #FFFFFF;
+}
+
+/* Iconos */
+
+html.dark-mode .oe-icon {
+    background: rgba(94, 234, 212, .12);
+    color: #5EEAD4;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+    .oe-container {
+        padding: 15px;
+    }
+
+    .oe-card {
+        padding: 16px;
+    }
+
+    .oe-search {
+        flex-direction: column;
+    }
+
+    .oe-search .oe-button {
+        width: 100%;
+    }
+
+    .oe-formula-info {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .oe-quantity-info {
+        grid-template-columns: 1fr;
+    }
+
+    .oe-submit .oe-button {
+        width: 100%;
+    }
+
+    .oe-delivery-input {
+        max-width: 100%;
+    }
+}

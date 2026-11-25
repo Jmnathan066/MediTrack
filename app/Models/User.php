@@ -26,6 +26,7 @@ class User extends Authenticatable
     'direccion',
     'documento',
     'empresa',
+    'idEPS',
     'tipoUsuario',
     'estado',
     'codigo',
@@ -54,4 +55,29 @@ class User extends Authenticatable
             'estado' => 'boolean',
         ];
     }
+
+    public function eps()
+{
+    return $this->belongsTo(Eps::class, 'idEPS', 'idEPS');
+}
+
+
+public function observacionesComoPaciente()
+{
+    return $this->hasMany(
+        ObservacionMedica::class,
+        'idPaciente',
+        'id'
+    );
+}
+
+public function observacionesComoDoctor()
+{
+    return $this->hasMany(
+        ObservacionMedica::class,
+        'idDoctor',
+        'id'
+    );
+}
+
 }

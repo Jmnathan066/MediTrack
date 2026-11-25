@@ -34,7 +34,7 @@
             <p>Completa tus datos para comenzar.</p>
         </header>
 
-
+        
         <?php if(session('error')): ?>
             <div class="alerta-error" role="alert">
                 <span class="alert-icon">!</span>
@@ -42,6 +42,7 @@
             </div>
         <?php endif; ?>
 
+        
         <?php if(session('success')): ?>
             <div class="alerta-success" role="status">
                 <span class="alert-icon">✓</span>
@@ -49,6 +50,7 @@
             </div>
         <?php endif; ?>
 
+        
         <?php if($errors->any()): ?>
             <div class="alerta-error" role="alert">
                 <span class="alert-icon">!</span>
@@ -63,7 +65,6 @@
             </div>
         <?php endif; ?>
 
-
         <form method="POST" action="/registrar" class="register-form">
             <?php echo csrf_field(); ?>
 
@@ -77,6 +78,7 @@
 
             <div class="form-grid">
 
+                
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input
@@ -100,6 +102,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
+                
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
                     <input
@@ -123,6 +126,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
+                
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
                     <input
@@ -146,6 +150,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
+                
                 <div class="form-group">
                     <label for="documento">Documento de identidad</label>
                     <input
@@ -169,6 +174,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
+                
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input
@@ -192,6 +198,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
+                
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
                     <input
@@ -217,7 +224,6 @@ unset($__errorArgs, $__bag); ?>
 
             </div>
 
-
             <div class="form-section-title account-title">
                 <span class="section-number">2</span>
                 <div>
@@ -228,12 +234,13 @@ unset($__errorArgs, $__bag); ?>
 
             <div class="form-grid">
 
+                
                 <div class="form-group">
                     <label for="tipoUsuario">Tipo de usuario</label>
+
                     <select
                         name="tipoUsuario"
                         id="tipoUsuario"
-                        onchange="controlarEmpresa()"
                         required
                     >
                         <option value="">Selecciona una opción</option>
@@ -248,6 +255,7 @@ unset($__errorArgs, $__bag); ?>
                             Entidad
                         </option>
                     </select>
+
                     <?php $__errorArgs = ['tipoUsuario'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -260,17 +268,42 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
 
-                <div class="form-group">
-                    <label for="empresa">Empresa <span class="optional">(opcional)</span></label>
-                    <input
-                        type="text"
-                        id="empresa"
-                        name="empresa"
-                        placeholder="Nombre de la empresa"
-                        value="<?php echo e(old('empresa')); ?>"
-                        autocomplete="organization"
+                
+                <div
+                    class="form-group"
+                    id="epsField"
+                    <?php echo e(!in_array(old('tipoUsuario'), ['paciente', 'entidad']) ? 'hidden' : ''); ?>
+
+                >
+                    <label for="idEPS">
+                        <span id="epsLabel">
+                            <?php echo e(old('tipoUsuario') === 'entidad'
+                                ? 'EPS a la que pertenece tu entidad'
+                                : 'EPS a la que perteneces'); ?>
+
+                        </span>
+                    </label>
+
+                    <select
+                        name="idEPS"
+                        id="idEPS"
+                        required
                     >
-                    <?php $__errorArgs = ['empresa'];
+                        <option value="">Selecciona una EPS</option>
+
+                        <?php $__currentLoopData = $eps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option
+                                value="<?php echo e($item->idEPS); ?>"
+                                <?php echo e((string) old('idEPS') === (string) $item->idEPS ? 'selected' : ''); ?>
+
+                            >
+                                <?php echo e($item->nombre); ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+
+                    <?php $__errorArgs = ['idEPS'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -280,13 +313,25 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                    <small class="field-hint" id="empresaHint">
-                        Si perteneces a una entidad, puedes indicarla aquí.
-                    </small>
+
+                    <?php if($eps->isEmpty()): ?>
+                        <small class="field-hint">
+                            Actualmente no hay EPS activas disponibles para el registro.
+                        </small>
+                    <?php else: ?>
+                        <small class="field-hint" id="epsHint">
+                            <?php echo e(old('tipoUsuario') === 'entidad'
+                                ? 'Selecciona la EPS a la que pertenece tu entidad.'
+                                : 'Selecciona la EPS a la que estás afiliado.'); ?>
+
+                        </small>
+                    <?php endif; ?>
                 </div>
 
+                
                 <div class="form-group full-width">
                     <label for="password">Contraseña</label>
+
                     <div class="password-wrapper">
                         <input
                             type="password"
@@ -314,6 +359,7 @@ unset($__errorArgs, $__bag); ?>
                             </svg>
                         </button>
                     </div>
+
                     <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -328,9 +374,10 @@ unset($__errorArgs, $__bag); ?>
 
             </div>
 
-
+            
             <button type="submit" class="register-button">
                 <span>Crear mi cuenta</span>
+
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12H19M12 5L19 12L12 19"
                           stroke="currentColor" stroke-width="2"
@@ -361,28 +408,70 @@ unset($__errorArgs, $__bag); ?>
 
 </main>
 
-
 <script>
-function controlarEmpresa() {
-    const rol = document.getElementById('tipoUsuario').value;
-    const empresaInput = document.getElementById('empresa');
-    const empresaHint = document.getElementById('empresaHint');
-
-    if (rol === 'paciente') {
-        empresaInput.disabled = true;
-        empresaInput.value = '';
-        empresaInput.placeholder = 'No aplica para pacientes';
-        empresaHint.textContent = 'Este campo no aplica para pacientes.';
-    } else {
-        empresaInput.disabled = false;
-        empresaInput.placeholder = 'Nombre de la empresa';
-        empresaHint.textContent =
-            'Si perteneces a una entidad, puedes indicarla aquí.';
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
-    controlarEmpresa();
+
+    // --------------------------------------------------
+    // Elementos del formulario
+    // --------------------------------------------------
+
+    const tipoUsuario = document.getElementById('tipoUsuario');
+
+    const epsField = document.getElementById('epsField');
+    const epsSelect = document.getElementById('idEPS');
+    const epsLabel = document.getElementById('epsLabel');
+    const epsHint = document.getElementById('epsHint');
+
+    // --------------------------------------------------
+    // Control de EPS según el tipo de usuario
+    // --------------------------------------------------
+
+    function controlarCampos() {
+
+        const rol = tipoUsuario.value;
+
+        const esPaciente = rol === 'paciente';
+        const esEntidad = rol === 'entidad';
+        const necesitaEPS = esPaciente || esEntidad;
+
+        epsField.hidden = !necesitaEPS;
+        epsSelect.disabled = !necesitaEPS;
+        epsSelect.required = necesitaEPS;
+
+        if (esEntidad) {
+
+            epsLabel.textContent =
+                'EPS a la que pertenece tu entidad';
+
+            if (epsHint) {
+                epsHint.textContent =
+                    'Selecciona la EPS a la que pertenece tu entidad.';
+            }
+
+        } else {
+
+            epsLabel.textContent =
+                'EPS a la que perteneces';
+
+            if (epsHint) {
+                epsHint.textContent =
+                    'Selecciona la EPS a la que estás afiliado.';
+            }
+        }
+
+        if (!necesitaEPS) {
+            epsSelect.value = '';
+        }
+    }
+
+    tipoUsuario.addEventListener('change', controlarCampos);
+
+    // Inicializar según el valor recuperado por Laravel.
+    controlarCampos();
+
+    // --------------------------------------------------
+    // Mostrar / ocultar contraseña
+    // --------------------------------------------------
 
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
@@ -409,17 +498,24 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
 
     togglePassword.addEventListener('click', function () {
+
         const isPassword = passwordInput.type === 'password';
 
         passwordInput.type = isPassword ? 'text' : 'password';
+
         eyeIcon.innerHTML = isPassword ? eyeClosed : eyeOpen;
 
-        togglePassword.setAttribute('aria-pressed', String(isPassword));
+        togglePassword.setAttribute(
+            'aria-pressed',
+            String(isPassword)
+        );
+
         togglePassword.setAttribute(
             'aria-label',
             isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
         );
     });
+
 });
 </script>
 

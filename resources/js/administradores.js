@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     const roleInput = document.getElementById('tipoUsuario');
     const roleButtons = document.querySelectorAll('.admin-role-option');
@@ -7,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const cardTitle = document.getElementById('adminCardTitle');
     const cardDescription = document.getElementById('adminCardDescription');
     const submitButton = document.getElementById('adminSubmitButton');
+
+    const epsField = document.getElementById('epsField');
+    const epsSelect = document.getElementById('idEPS');
 
     // Evita errores si este archivo se carga en otra vista.
     if (
@@ -49,6 +53,18 @@ document.addEventListener('DOMContentLoaded', function () {
         submitButton.textContent = esDoctor
             ? 'Crear doctor'
             : 'Crear administrador';
+
+        // Mostrar u ocultar el selector de EPS.
+        if (epsField && epsSelect) {
+            epsField.hidden = !esDoctor;
+            epsSelect.required = esDoctor;
+            epsSelect.disabled = !esDoctor;
+
+            // Si cambia a administrador, se limpia la selección.
+            if (!esDoctor) {
+                epsSelect.value = '';
+            }
+        }
 
         roleButtons.forEach(function (button) {
             const activo = button.dataset.role === rol;

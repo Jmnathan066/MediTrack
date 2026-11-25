@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InventarioSede extends Model
 {
@@ -15,6 +17,7 @@ class InventarioSede extends Model
         'idMedicamento',
         'stock',
         'stockMinimo',
+        'estado',
     ];
 
     protected function casts(): array
@@ -22,10 +25,14 @@ class InventarioSede extends Model
         return [
             'stock' => 'integer',
             'stockMinimo' => 'integer',
+            'estado' => 'boolean',
         ];
     }
 
-    public function sede()
+    /**
+     * El inventario pertenece a una sede.
+     */
+    public function sede(): BelongsTo
     {
         return $this->belongsTo(
             Sede::class,
@@ -34,12 +41,27 @@ class InventarioSede extends Model
         );
     }
 
-    public function medicamento()
+    /**
+     * El inventario pertenece a un medicamento.
+     */
+    public function medicamento(): BelongsTo
     {
         return $this->belongsTo(
             Medicamento::class,
             'idMedicamento',
             'idMedicamento'
+        );
+    }
+
+    /**
+     * Un inventario puede contener varios lotes.
+     */
+    public function lotes(): HasMany
+    {
+        return $this->hasMany(
+            LoteMedicamento::class,
+            'idInventario',
+            'idInventario'
         );
     }
 }

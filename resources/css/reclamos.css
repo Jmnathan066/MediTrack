@@ -1,0 +1,473 @@
+
+/* =========================================
+   MEDITRACK EPS - RECLAMOS DE MEDICAMENTOS
+   Compatible con html.dark-mode
+   ========================================= */
+
+/* =========================================
+   VARIABLES Y CONTENEDOR
+   ========================================= */
+
+.reclamos-container {
+    --reclamos-bg: #f4f7fb;
+    --reclamos-surface: #ffffff;
+    --reclamos-surface-alt: #f8fafc;
+    --reclamos-hover: #f0f5f9;
+
+    --reclamos-text: #243247;
+    --reclamos-heading: #17324d;
+    --reclamos-muted: #718096;
+
+    --reclamos-border: #e2e8f0;
+    --reclamos-input-bg: #fbfcfe;
+    --reclamos-input-border: #dce4ed;
+
+    --reclamos-primary: #0F766E;
+    --reclamos-primary-hover: #115E59;
+    --reclamos-primary-soft: #E0F5F2;
+
+    --reclamos-success-bg: #eaf9f0;
+    --reclamos-success: #176b43;
+    --reclamos-success-border: #bcebd0;
+
+    --reclamos-danger-bg: #fff0f0;
+    --reclamos-danger: #a52d35;
+    --reclamos-danger-border: #f1c7c7;
+
+    --reclamos-warning-bg: #fff0df;
+    --reclamos-warning: #b66b19;
+
+    --reclamos-info-bg: #f0f8ff;
+    --reclamos-info: #53718d;
+
+    --reclamos-shadow: 0 5px 20px rgba(29, 52, 77, 0.045);
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    color: var(--reclamos-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.reclamos-container *,
+.reclamos-container *::before,
+.reclamos-container *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   MODO OSCURO
+   ========================================= */
+
+html.dark-mode .reclamos-container {
+    --reclamos-bg: #111827;
+    --reclamos-surface: #1f2937;
+    --reclamos-surface-alt: #273449;
+    --reclamos-hover: #334155;
+
+    --reclamos-text: #e5e7eb;
+    --reclamos-heading: #f1f5f9;
+    --reclamos-muted: #a6b2c3;
+
+    --reclamos-border: #374151;
+    --reclamos-input-bg: #111827;
+    --reclamos-input-border: #465367;
+
+    --reclamos-primary: #5EEAD4;
+    --reclamos-primary-hover: #2AC4B8;
+    --reclamos-primary-soft: #153b3b;
+
+    --reclamos-success-bg: #173b2d;
+    --reclamos-success: #91e4b4;
+    --reclamos-success-border: #285b43;
+
+    --reclamos-danger-bg: #442629;
+    --reclamos-danger: #ffadb3;
+    --reclamos-danger-border: #744047;
+
+    --reclamos-warning-bg: #453321;
+    --reclamos-warning: #ffc27a;
+
+    --reclamos-info-bg: #1c3448;
+    --reclamos-info: #b5d9f7;
+
+    --reclamos-shadow: 0 5px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+.reclamos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.reclamos-header h1 {
+    margin: 0 0 9px;
+    color: var(--reclamos-heading);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 750;
+}
+
+.reclamos-header p {
+    margin: 0;
+    color: var(--reclamos-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   TARJETA DEL FORMULARIO
+   ========================================= */
+
+.reclamo-card {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 30px;
+    padding: 28px;
+    background: var(--reclamos-surface);
+    color: var(--reclamos-text);
+    border: 1px solid var(--reclamos-border);
+    border-radius: 16px;
+    box-shadow: var(--reclamos-shadow);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.reclamo-card h2,
+.reclamos-historial h2 {
+    margin: 0 0 23px;
+    color: var(--reclamos-heading);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 21px;
+}
+
+.form-group label {
+    color: var(--reclamos-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid var(--reclamos-input-border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--reclamos-input-bg);
+    color: var(--reclamos-text);
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s,
+                background-color 0.2s;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group textarea {
+    min-height: 135px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--reclamos-muted);
+    opacity: 0.8;
+}
+
+html.dark-mode .form-group input,
+html.dark-mode .form-group select,
+html.dark-mode .form-group textarea {
+    color-scheme: dark;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--reclamos-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+    background: var(--reclamos-surface);
+}
+
+html.dark-mode .form-group input:focus,
+html.dark-mode .form-group select:focus,
+html.dark-mode .form-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.13);
+}
+
+/* =========================================
+   BOTÓN REGISTRAR
+   ========================================= */
+
+.btn-reclamo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--reclamos-primary);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-reclamo:hover {
+    background: var(--reclamos-primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-reclamo:active {
+    transform: translateY(0);
+}
+
+.btn-reclamo:focus-visible {
+    outline: 3px solid var(--reclamos-primary);
+    outline-offset: 3px;
+}
+
+/* =========================================
+   ALERTAS
+   ========================================= */
+
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 15px 18px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.alert ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.alert-success {
+    background: var(--reclamos-success-bg);
+    color: var(--reclamos-success);
+    border-color: var(--reclamos-success-border);
+}
+
+.alert-error {
+    background: var(--reclamos-danger-bg);
+    color: var(--reclamos-danger);
+    border-color: var(--reclamos-danger-border);
+}
+
+/* =========================================
+   ESTADO VACÍO
+   ========================================= */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 35px 20px;
+    border: 1px dashed var(--reclamos-border);
+    border-radius: 12px;
+    background: var(--reclamos-surface-alt);
+    text-align: center;
+}
+
+.empty-state p {
+    max-width: 400px;
+    margin: 0;
+    color: var(--reclamos-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   HISTORIAL DE RECLAMOS
+   ========================================= */
+
+.reclamos-historial {
+    width: 100%;
+    padding: 26px;
+    background: var(--reclamos-surface);
+    color: var(--reclamos-text);
+    border: 1px solid var(--reclamos-border);
+    border-radius: 16px;
+    box-shadow: var(--reclamos-shadow);
+}
+
+.reclamos-historial h2 {
+    margin-bottom: 22px;
+}
+
+.reclamo-item {
+    margin-bottom: 15px;
+    padding: 19px;
+    border: 1px solid var(--reclamos-border);
+    border-radius: 12px;
+    background: var(--reclamos-surface);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.reclamo-item:last-child {
+    margin-bottom: 0;
+}
+
+.reclamo-item:hover {
+    background: var(--reclamos-hover);
+}
+
+.reclamo-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.reclamo-item-header h3 {
+    margin: 0 0 7px;
+    color: var(--reclamos-heading);
+    font-size: 15px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.reclamo-item-header div > span {
+    color: var(--reclamos-muted);
+    font-size: 12px;
+}
+
+.reclamo-item > p {
+    margin: 10px 0 0;
+    color: var(--reclamos-text);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.reclamo-item > p strong {
+    color: var(--reclamos-heading);
+}
+
+/* =========================================
+   ESTADOS DE LOS RECLAMOS
+   ========================================= */
+
+.estado-reclamo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.estado-pendiente {
+    background: var(--reclamos-warning-bg);
+    color: var(--reclamos-warning);
+}
+
+.estado-aprobado,
+.estado-resuelto {
+    background: var(--reclamos-success-bg);
+    color: var(--reclamos-success);
+}
+
+.estado-rechazado {
+    background: var(--reclamos-danger-bg);
+    color: var(--reclamos-danger);
+}
+
+.estado-en_revision {
+    background: var(--reclamos-info-bg);
+    color: var(--reclamos-info);
+}
+
+/* =========================================
+   RESPONSIVE - TABLETAS
+   ========================================= */
+
+@media (max-width: 900px) {
+    .reclamo-card {
+        max-width: 100%;
+    }
+}
+
+/* =========================================
+   RESPONSIVE - MÓVILES
+   ========================================= */
+
+@media (max-width: 768px) {
+    .reclamos-header {
+        margin-bottom: 22px;
+    }
+
+    .reclamos-header h1 {
+        font-size: 27px;
+    }
+
+    .reclamo-card,
+    .reclamos-historial {
+        padding: 20px;
+    }
+
+    .reclamo-item {
+        padding: 15px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE - MÓVILES PEQUEÑOS
+   ========================================= */
+
+@media (max-width: 420px) {
+    .reclamos-header h1 {
+        font-size: 23px;
+    }
+
+    .reclamo-card,
+    .reclamos-historial {
+        padding: 16px;
+    }
+
+    .reclamo-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 13px;
+    }
+}
+

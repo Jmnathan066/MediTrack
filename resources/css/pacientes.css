@@ -520,6 +520,95 @@ html.dark-mode .pacientes-page {
     outline-offset: 3px;
 }
 
+
+
+.acciones-paciente {
+    margin-bottom: 8px;
+}
+
+.acciones-paciente summary {
+    cursor: pointer;
+    text-align: center;
+    list-style: none;
+}
+
+.acciones-paciente summary::-webkit-details-marker {
+    display: none;
+}
+
+.formulario-observacion,
+.historial-observaciones {
+    min-width: 260px;
+    max-width: 380px;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.formulario-observacion textarea {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    resize: vertical;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.formulario-observacion button {
+    margin-top: 10px;
+}
+
+.observacion-registro {
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    overflow-wrap: anywhere;
+}
+
+.observacion-registro p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+
+.observacion-registro small {
+    display: block;
+    margin-top: 5px;
+    color: #718096;
+}
+
+.sin-observaciones {
+    color: #718096;
+    font-size: 13px;
+}
+
+html.dark-mode .formulario-observacion,
+html.dark-mode .historial-observaciones {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+html.dark-mode .formulario-observacion textarea {
+    background: #111827;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+
+html.dark-mode .observacion-registro {
+    background: #273449;
+    border-color: #374151;
+}
+
+html.dark-mode .observacion-registro small,
+html.dark-mode .sin-observaciones {
+    color: #a6b2c3;
+}
+
+
 /* =========================================
    RESPONSIVE: TABLETAS
    ========================================= */

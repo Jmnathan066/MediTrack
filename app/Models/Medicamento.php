@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Medicamento extends Model
 {
@@ -10,7 +11,7 @@ class Medicamento extends Model
 
     protected $primaryKey = 'idMedicamento';
 
-     protected $fillable = [
+    protected $fillable = [
         'nombre',
         'categoria',
         'descripcion',
@@ -19,10 +20,22 @@ class Medicamento extends Model
         'stockMinimo',
         'valor',
         'idSede',
-        'estado'
+        'estado',
     ];
 
     protected $casts = [
         'estado' => 'boolean',
     ];
+
+    /**
+     * Un medicamento puede tener inventarios en diferentes sedes.
+     */
+    public function inventarios(): HasMany
+    {
+        return $this->hasMany(
+            InventarioSede::class,
+            'idMedicamento',
+            'idMedicamento'
+        );
+    }
 }
